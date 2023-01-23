@@ -6,15 +6,12 @@ provider "boundary" {
   password_auth_method_password   = var.boundary_password
 }
 
-resource "boundary_scope" "global" {
-  global_scope = true
-  scope_id     = "global"
-}
+
 
 resource "boundary_scope" "org" {
   name                     = "external_it_services"
   description              = "Products meant for external consumption"
-  scope_id                 = boundary_scope.global.id
+  scope_id                 = "268a4142-1c7f-4c69-af02-853ba8557247"
   auto_create_admin_role   = true
   auto_create_default_role = true
 }
