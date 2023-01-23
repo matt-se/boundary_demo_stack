@@ -1,4 +1,3 @@
-
 provider "boundary" {
   addr                            = var.boundary_url
   auth_method_id                  = var.boundary_auth_id

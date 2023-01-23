@@ -35,7 +35,7 @@ variable "boundary_url" {
 }
 
 variable "boundary_auth_id" {
-  default     = "ampw_e9LKix24m6"
+  default     = "ampw_DOlloiL9SB"
 }
 
 
