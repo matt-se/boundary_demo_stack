@@ -6,7 +6,7 @@ resource "aws_key_pair" "key_for_ssh_acccess_to_worker" {
 resource "aws_instance" "web" {
   ami           = var.worker_ami
   instance_type = "t2.micro"
-  key_name      = aws_key_pair.key_for_ssh_acccess.key_name
+  key_name      = aws_key_pair.key_for_ssh_acccess_to_worker.key_name
   subnet_id     = var.subnet_id
   vpc_security_group_ids      = [aws_security_group.sg_worker.id]
   associate_public_ip_address = true
