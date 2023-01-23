@@ -41,7 +41,7 @@ resource "boundary_host_static" "web_server" {
 }
 
 resource "boundary_host_set" "web_servers" {
-  host_catalog_id = boundary_host_catalog.us-east-1-dev.id
+  host_catalog_id = boundary_host_catalog.us_east_1_dev.id
   type            = "static"
   host_ids = [
     boundary_host_static.web_server.id
