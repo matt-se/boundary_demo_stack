@@ -14,6 +14,15 @@ variable "environment" {
   default     = "dev"
 }
 
+variable "owner" {
+  default     = "mattygrecgrec"
+}
+
+variable "version" {
+  default     = "0.1"
+}
+
+
 
 variable "tfc_workspace" {
   default     = "dales-dead-bug-web-server-prod"
