@@ -25,10 +25,9 @@ resource "boundary_scope" "project" {
   auto_create_admin_role = true
 }
 
-resource "boundary_host_catalog" "us-east-1-dev" {
+resource "boundary_host_catalog_static" "us-east-1-dev" {
   name        = "us-east-1-dev"
   description = "Dev AWS resources in us-east-1"
-  type        = "Static"
   scope_id    = boundary_scope.project.id
 }
 
