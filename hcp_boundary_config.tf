@@ -50,3 +50,39 @@ resource "boundary_host_set_static" "web_servers" {
     boundary_host_static.web_server.id
   ]
 }
+
+
+resource "boundary_auth_method" "password" {
+  scope_id = boundary_scope.org.id
+  type     = "password"
+}
+
+resource "boundary_account_password" "bobby-hill" {
+  auth_method_id = boundary_auth_method.password.id
+  type           = "password"
+  login_name     = "bobby-hill"
+  password       = "$uper$ecure"
+}
+
+resource "boundary_user" "bobby-hill" {
+  name        = "bobby-hill"
+  description = "bobby-hill's user resource"
+  account_ids = [boundary_account_password.bobby-hill.id]
+  scope_id    = boundary_scope.org.id
+}
+
+resource "boundary_group" "external_it_services_devs" {
+  name        = "external_it_services_devs"
+  description = "external_it_services_devs"
+  member_ids  = [boundary_user.bobby-hill.id]
+  scope_id    = boundary_scope.project.id
+}
+
+resource "boundary_role" "devs_read_only" {
+  name        = "devs_read_only"
+  description = "My first role!"
+  principal_ids = [
+    boundary_group.external_it_services_devs.id
+  ]
+  scope_id    = boundary_scope.org.id
+}
