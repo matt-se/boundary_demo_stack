@@ -27,7 +27,6 @@ resource "aws_security_group" "sg_worker" {
 
 
 
-
 resource "aws_security_group" "sg_web_server" {
   name   = "${var.app_prefix}_web_serv_sec_group"
   vpc_id = aws_vpc.vpc.id
