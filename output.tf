@@ -38,3 +38,9 @@ output "web_instance_id" {
 output "worker_instance_id" {
   value = aws_instance.boundary_worker.id
 }
+
+output "aws_instance_web_public_ip" {
+  value = aws_instance.web.public_ip
+}
+  
+}
