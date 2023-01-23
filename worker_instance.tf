@@ -3,7 +3,7 @@ resource "aws_key_pair" "key_for_ssh_acccess_to_worker" {
   public_key = var.public_key
 }
 
-resource "aws_instance" "web" {
+resource "aws_instance" "boundary_worker" {
   ami           = var.worker_ami
   instance_type = "t2.micro"
   key_name      = aws_key_pair.key_for_ssh_acccess_to_worker.key_name
