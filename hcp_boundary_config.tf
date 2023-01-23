@@ -40,9 +40,8 @@ resource "boundary_host_static" "web_server" {
   #scope_id        = boundary_scope.project.id
 }
 
-resource "boundary_host_set" "web_servers" {
+resource "boundary_host_set_static" "web_servers" {
   host_catalog_id = boundary_host_catalog_static.us_east_1_dev.id
-  type            = "static"
   host_ids = [
     boundary_host_static.web_server.id
   ]
