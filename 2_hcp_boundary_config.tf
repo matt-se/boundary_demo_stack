@@ -35,7 +35,9 @@ resource "boundary_host_static" "web_server" {
   address         = aws_instance.web.public_ip
   #address = "3.236.8.189"
   host_catalog_id = boundary_host_catalog_static.us_east_1_dev.id
-  #scope_id        = boundary_scope.project.id
+  depends_on = [
+    aws_instance.web
+  ]
 }
 
 resource "boundary_host_set_static" "web_servers" {
