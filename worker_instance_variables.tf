@@ -1,6 +1,6 @@
 variable "worker_ami" {
   description = "ami to use for the worker instance"
-  default     = "ami-0b5eea76982371e91"
+  default     = "ami-00874d747dde814fa"
 }
 
 variable "public_key" {
