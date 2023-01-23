@@ -3,7 +3,7 @@ variable "region" {
   default     = "us-east-1"
 }
 
-variable "app-prefix" {
+variable "app_prefix" {
   description = "prefix of the app that will be created in AWS"
   default     = "dales-dead-bug-web-server-prod"
 }
@@ -15,11 +15,11 @@ variable "environment_tag" {
 }
 
 
-variable "tfc-workspace" {
+variable "tfc_workspace" {
   default     = "dales-dead-bug-web-server-prod"
 }
 
-variable "tfc-org" {
+variable "tfc_org" {
   default     = "mattygrecgrec"
 }
 
