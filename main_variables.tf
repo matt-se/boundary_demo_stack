@@ -31,7 +31,7 @@ variable "tfc_org" {
 }
 
 variable "boundary_url" {
-  default     = "https://268a4142-1c7f-4c69-af02-853ba8557247.boundary.hashicorp.cloud"
+  default     = "https://e9ac2d61-1eda-44e8-9d86-e456659b8bf7.boundary.hashicorp.cloud"
 }
 
 variable "boundary_auth_id" {
