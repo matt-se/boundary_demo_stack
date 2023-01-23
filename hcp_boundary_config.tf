@@ -17,3 +17,10 @@ resource "boundary_scope" "org" {
   auto_create_admin_role   = true
   auto_create_default_role = true
 }
+
+resource "boundary_scope" "project" {
+  name                   = "aws"
+  description            = "AWS resources for external IT services"
+  scope_id               = boundary_scope.org.id
+  auto_create_admin_role = true
+}
