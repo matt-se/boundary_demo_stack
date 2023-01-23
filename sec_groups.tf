@@ -1,5 +1,5 @@
 resource "aws_security_group" "sg_worker" {
-  name   = "${var.app_prefix}_worker_sec_group"
+  name   = "${var.app_prefix}_worker_sg_${var.environment}}"
   vpc_id = aws_vpc.vpc.id
 
   ingress {
@@ -28,7 +28,7 @@ resource "aws_security_group" "sg_worker" {
 
 
 resource "aws_security_group" "sg_web_server" {
-  name   = "${var.app_prefix}_web_serv_sec_group"
+  name   = "${var.app_prefix}_web_serv_sg_${var.environment}"
   vpc_id = aws_vpc.vpc.id
 
   ingress {
