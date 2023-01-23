@@ -38,7 +38,7 @@ resource "boundary_host" "web_server" {
   description     = "frontend web server for ${var.app_prefix} in ${var.environment}"
   address         = aws_instance.web.public_ip
   host_catalog_id = boundary_host_catalog_static.us_east_1_dev.id
-  scope_id        = boundary_scope.project.id
+  #scope_id        = boundary_scope.project.id
 }
 
 resource "boundary_host_set" "web_servers" {
