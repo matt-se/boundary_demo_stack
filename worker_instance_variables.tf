@@ -10,3 +10,4 @@ variable "public_key" {
 
 variable "path_to_private_key" {
   default       = "SP_boundary_worker_prod_keypair.pem"
+}
