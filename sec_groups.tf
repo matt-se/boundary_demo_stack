@@ -1,6 +1,6 @@
 resource "aws_security_group" "sg_worker" {
   name   = "${var.app_prefix}_worker_sec_group"
-  vpc_id = var.vpc_id
+  vpc_id = aws_vpc.vpc.id
 
   ingress {
     from_port   = 22
