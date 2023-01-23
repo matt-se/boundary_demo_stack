@@ -8,7 +8,6 @@ variable "app_prefix" {
   default     = "dales-dead-bug_frontend"
 }
 
-
 variable "environment" {
   description = "Environment tag"
   default     = "dev"
@@ -23,7 +22,6 @@ variable "app_version" {
 }
 
 
-
 variable "tfc_workspace" {
   default     = "dales-dead-bug-web-server-prod"
 }
@@ -32,3 +30,19 @@ variable "tfc_org" {
   default     = "mattygrecgrec"
 }
 
+variable "boundary_url" {
+  default     = "https://268a4142-1c7f-4c69-af02-853ba8557247.boundary.hashicorp.cloud"
+}
+
+variable "boundary_auth_id" {
+  default     = "ampw_e9LKix24m6"
+}
+
+
+variable "boundary_username" {
+  default     = "matty-boundary-admin"
+}
+
+variable "boundary_password" {
+  default     = "changeme"
+}
