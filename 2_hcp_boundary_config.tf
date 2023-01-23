@@ -29,7 +29,7 @@ resource "boundary_host_catalog_static" "us_east_1_dev" {
 resource "boundary_host_static" "web_server" {
   name            = "${var.app_prefix}_web_${var.environment}"
   description     = "frontend web server for ${var.app_prefix} in ${var.environment}"
-  address         = aws_instance.web.public_ip
+  address         = aws_instance.web.private_ip
   #address = "3.236.8.189"
   host_catalog_id = boundary_host_catalog_static.us_east_1_dev.id
   depends_on = [
