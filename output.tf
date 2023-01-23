@@ -30,3 +30,11 @@ output "sg_worker_arn" {
 output "sg_worker_id" {
   value = aws_security_group.sg_worker.id
 }
+
+output "web_instance_id" {
+  value = aws_instance.web.id
+}
+
+output "worker_instance_id" {
+  value = aws_instance.boundary_worker.id
+}
