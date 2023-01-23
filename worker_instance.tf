@@ -14,7 +14,7 @@ resource "aws_instance" "web" {
   tags = {
     Name = "${var.app_prefix}_boundary_pki_worker_${var.environment}"
     owner = var.owner
-    version = var.version
+    version = var.app_version
   }
   
   connection {

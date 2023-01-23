@@ -18,7 +18,7 @@ variable "owner" {
   default     = "mattygrecgrec"
 }
 
-variable "version" {
+variable "app_version" {
   default     = "0.1"
 }
 
