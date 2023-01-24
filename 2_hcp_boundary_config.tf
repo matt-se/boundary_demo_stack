@@ -84,7 +84,7 @@ resource "boundary_role" "devs_read_only" {
 }
 
 
-resource "boundary_worker" registration code {
+resource "boundary_worker" "worker" {
   name        = "${var.app_prefix}_worker_${var.environment}}"
   description = "${var.app_prefix}_worker_${var.environment}}"
   type        = "worker"
