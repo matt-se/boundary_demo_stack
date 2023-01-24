@@ -19,7 +19,7 @@ resource "aws_instance" "boundary_worker" {
   
   connection {
       type        = "ssh"
-      user        = var.web_server_user
+      user        = var.worker_key_user
       private_key = file(var.path_to_private_key)
       host        = self.public_ip
     }

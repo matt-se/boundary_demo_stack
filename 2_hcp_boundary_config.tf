@@ -122,7 +122,7 @@ resource "boundary_credential_ssh_private_key" "web_server_key" {
   name                   = "ssh_private_key"
   description            = "My first ssh private key credential!"
   credential_store_id    = boundary_credential_store_static.web_server_certs.id
-  username               = "ubuntu"
-  private_key            = file("dales-dead-bug_frontend_web_server_dev_keypair.pem")
+  username               = var.web_server_username
+  private_key            = file(var.web_server_private_key_path)
   #private_key_passphrase = "optional-passphrase"
 }

@@ -10,3 +10,7 @@ variable "public_key" {
 variable "path_to_private_key" {
   default       = "key.pem"
 }
+
+variable "worker_key_user" {
+  default       = "ubuntu"
+}
