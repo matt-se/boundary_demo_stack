@@ -82,7 +82,6 @@ resource "boundary_target" "web" {
   injected_application_credential_source_ids = [
     boundary_credential_store_static.web_server_certs.id
   ]
-  ]
 }
 
 
