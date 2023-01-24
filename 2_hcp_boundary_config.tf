@@ -19,6 +19,26 @@ resource "boundary_scope" "project" {
   auto_create_admin_role = true
 }
 
+
+####################
+
+resource "boundary_credential_store_static" "web_server_certs" {
+  name        = "cred store for web servers ${var.environment}"
+  description = "My first static credential store!"
+  scope_id    = boundary_scope.project.id
+}
+
+resource "boundary_credential_ssh_private_key" "web_server_key" {
+  name                   = "ssh_private_key"
+  description            = "My first ssh private key credential!"
+  credential_store_id    = boundary_credential_store_static.web_server_certs.id
+  username               = var.web_server_user
+  private_key            = file(var.web_server_path_to_private_key)
+  #private_key_passphrase = "optional-passphrase"
+}
+
+####################
+
 resource "boundary_host_catalog_static" "us_east_1_dev" {
   name        = "us-east-1-dev"
   description = "Dev AWS resources in us-east-1"
@@ -59,6 +79,10 @@ resource "boundary_target" "web" {
   #brokered_credential_source_ids = [
   #  boundary_credential_library_vault.foo.id
   #]
+  injected_application_credential_source_ids = [
+    boundary_credential_store_static.web_server_certs.id
+  ]
+  ]
 }
 
 
@@ -107,22 +131,4 @@ resource "boundary_worker" "worker" {
   name        = "${var.app_prefix}_worker_${var.environment}"
   description = "${var.app_prefix}_worker_${var.environment}"
   scope_id    = "global"
-}
-
-
-####################
-
-resource "boundary_credential_store_static" "web_server_certs" {
-  name        = "cred store for web servers ${var.environment}"
-  description = "My first static credential store!"
-  scope_id    = boundary_scope.project.id
-}
-
-resource "boundary_credential_ssh_private_key" "web_server_key" {
-  name                   = "ssh_private_key"
-  description            = "My first ssh private key credential!"
-  credential_store_id    = boundary_credential_store_static.web_server_certs.id
-  username               = var.web_server_user
-  private_key            = file(var.web_server_path_to_private_key)
-  #private_key_passphrase = "optional-passphrase"
 }
