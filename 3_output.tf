@@ -44,5 +44,5 @@ output "aws_instance_web_public_ip" {
 }
   
 output "boundary_worker_reg_code" {
-  value = boundary_worker.worker.registration_code
+  value = boundary_worker.worker.controller_generated_activation_token
 }
