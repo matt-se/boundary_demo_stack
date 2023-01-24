@@ -76,11 +76,8 @@ resource "boundary_target" "web" {
   host_source_ids = [
     boundary_host_set_static.web_servers.id
   ]
-  #brokered_credential_source_ids = [
-  #  boundary_credential_library_vault.foo.id
-  #]
   injected_application_credential_source_ids = [
-    boundary_credential_store_static.web_server_certs.id
+    boundary_credential_ssh_private_key.web_server_key.id
   ]
 }
 
