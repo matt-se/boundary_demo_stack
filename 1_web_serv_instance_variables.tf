@@ -11,3 +11,6 @@ variable "web_server_path_to_private_key" {
   default       = "dales-dead-bug_frontend_web_server_dev_keypair.pem"
 }
 
+variable "web_server_user" {
+  default       = "ubuntu"
+}
