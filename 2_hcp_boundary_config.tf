@@ -38,6 +38,7 @@ resource "boundary_host_static" "web_server" {
 
 resource "boundary_host_set_static" "web_servers" {
   host_catalog_id = boundary_host_catalog_static.us_east_1_dev.id
+  name = "web_servers"
   host_ids = [
     boundary_host_static.web_server.id
   ]
@@ -46,6 +47,23 @@ resource "boundary_host_set_static" "web_servers" {
   ]
 }
 
+resource "boundary_target" "web" {
+  name         = "web_servers_remote_access"
+  #description  = "Foo target"
+  type         = "tcp"
+  default_port = "22"
+  scope_id     = boundary_scope.project.id
+  host_source_ids = [
+    boundary_host_set_static.web_servers.id
+  ]
+  #brokered_credential_source_ids = [
+  #  boundary_credential_library_vault.foo.id
+  #]
+}
+
+
+
+####################
 
 resource "boundary_auth_method" "password" {
   scope_id = boundary_scope.org.id
@@ -83,9 +101,11 @@ resource "boundary_role" "devs_read_only" {
   grant_strings = ["id=*;type=*;actions=read"]
 }
 
+####################
 
 resource "boundary_worker" "worker" {
   name        = "${var.app_prefix}_worker_${var.environment}}"
   description = "${var.app_prefix}_worker_${var.environment}}"
   scope_id    = "global"
 }
+
