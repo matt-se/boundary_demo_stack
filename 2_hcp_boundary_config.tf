@@ -70,7 +70,7 @@ resource "boundary_host_set_static" "web_servers" {
 resource "boundary_target" "web" {
   name         = "web_servers_remote_access"
   #description  = "Foo target"
-  type         = "tcp"
+  type         = "ssh"
   default_port = "22"
   scope_id     = boundary_scope.project.id
   host_source_ids = [
@@ -80,6 +80,8 @@ resource "boundary_target" "web" {
     boundary_credential_ssh_private_key.web_server_key.id
   ]
 }
+
+
 
 
 
