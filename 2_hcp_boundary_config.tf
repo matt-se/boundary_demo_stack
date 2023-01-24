@@ -30,7 +30,6 @@ resource "boundary_host_static" "web_server" {
   name            = "${var.app_prefix}_web_${var.environment}"
   description     = "frontend web server for ${var.app_prefix} in ${var.environment}"
   address         = aws_instance.web.private_ip
-  #address = "3.236.8.189"
   host_catalog_id = boundary_host_catalog_static.us_east_1_dev.id
   depends_on = [
     aws_instance.web
@@ -81,4 +80,13 @@ resource "boundary_role" "devs_read_only" {
     boundary_group.external_it_services_devs.id
   ]
   scope_id    = boundary_scope.org.id
+  grant_strings = ["id=*;type=*;actions=read"]
+}
+
+
+resource "boundary_worker" registration code {
+  name        = "${var.app_prefix}_worker_${var.environment}}"
+  description = "${var.app_prefix}_worker_${var.environment}}"
+  type        = "worker"
+  scope_id    = "global"
 }
