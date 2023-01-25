@@ -1,4 +1,4 @@
-
+#################### scopes
 resource "boundary_scope" "global" {
   global_scope = true
   scope_id     = "global"
@@ -20,7 +20,7 @@ resource "boundary_scope" "project" {
 }
 
 
-####################
+####################  creds
 
 resource "boundary_credential_store_static" "web_server_certs" {
   name        = "cred store for web servers ${var.environment}"
@@ -37,7 +37,9 @@ resource "boundary_credential_ssh_private_key" "web_server_key" {
   #private_key_passphrase = "optional-passphrase"
 }
 
-####################
+
+
+####################  hosts
 
 resource "boundary_host_catalog_static" "us_east_1_dev" {
   name        = "us-east-1-dev"
@@ -95,8 +97,7 @@ resource "boundary_target" "web" {
 
 
 
-
-####################
+#################### users
 
 resource "boundary_auth_method" "password" {
   scope_id = boundary_scope.org.id
@@ -130,11 +131,13 @@ resource "boundary_role" "devs_read_only" {
   principal_ids = [
     boundary_group.external_it_services_devs.id
   ]
-  scope_id    = boundary_scope.org.id
-  grant_strings = ["id=*;type=*;actions=read"]
+  scope_id    = boundary_scope.project.id
+  grant_strings = ["id=*;type=*;actions=read,list"]
 }
 
-####################
+
+
+#################### workers
 
 resource "boundary_worker" "worker" {
   name        = "${var.app_prefix}_worker_${var.environment}"
