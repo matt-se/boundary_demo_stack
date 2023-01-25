@@ -10,8 +10,8 @@ resource "aws_db_instance" "db" {
   identifier           = "${var.app_prefix}-db-subnet-${var.environment}"
   engine               = "postgres"
   instance_class       = "db.t3.micro"
-  username             = "foo"
-  password             = "foobarbaz"
+  username             = var.aws_rds_username
+  password             = var.aws_rds_username
   skip_final_snapshot  = true
   db_subnet_group_name = aws_db_subnet_group.subnet.name
 }

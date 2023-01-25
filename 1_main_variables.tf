@@ -110,3 +110,14 @@ variable "path_to_private_key" {
 variable "worker_key_user" {
   default       = "ubuntu"
 }
+
+
+
+##########   AWS database
+variable "aws_rds_username" {
+  default     = "matty"
+}
+  
+variable "aws_rds_password" {
+  default     = "changeme"
+}

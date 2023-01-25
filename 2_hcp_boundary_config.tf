@@ -94,7 +94,7 @@ resource "boundary_target" "web" {
   ]
 }
 
-
+### RDS host
 resource "boundary_host_static" "rds" {
   name            = "${var.app_prefix}_rds_${var.environment}"
   description     = "dB for ${var.app_prefix} in ${var.environment}"
