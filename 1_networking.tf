@@ -23,6 +23,16 @@ resource "aws_subnet" "subnet_public" {
   }
 }
 
+resource "aws_subnet" "subnet_public2" {
+  vpc_id     = aws_vpc.vpc.id
+  cidr_block = var.cidr_subnet
+  availability_zone = us-east-1d
+  tags = {
+    Name = "${var.app_prefix}_subnet_public_2_${var.environment}"
+  }
+}
+
+
 resource "aws_route_table" "rtb_public" {
   vpc_id = aws_vpc.vpc.id
   tags = {
