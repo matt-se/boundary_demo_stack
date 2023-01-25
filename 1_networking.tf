@@ -22,8 +22,9 @@ resource "aws_subnet" "subnet_public" {
 
 resource "aws_route_table" "rtb_public" {
   vpc_id = aws_vpc.vpc.id
-  name = "${var.app_prefix}_rtb_public_${var.environment}"
-
+  tags = {
+    Name = "${var.app_prefix}_rtb_public_${var.environment}"
+  }
   route {
     cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.igw.id
