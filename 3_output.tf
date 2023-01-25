@@ -58,3 +58,11 @@ output "db_instance_arn" {
 output "db_instance_address" {
   value = aws_db_instance.db.address
 }
+
+output "rds_address" {
+  value = aws_db_instance.db.address
+}
+
+output "rds_id" {
+  value = aws_db_instance.db.id
+}

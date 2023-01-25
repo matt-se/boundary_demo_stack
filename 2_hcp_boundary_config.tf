@@ -95,6 +95,33 @@ resource "boundary_target" "web" {
 }
 
 
+resource "boundary_host_static" "rds" {
+  name            = "${var.app_prefix}_rds_${var.environment}"
+  description     = "dB for ${var.app_prefix} in ${var.environment}"
+  address         = aws_db_instance.rds.address
+  host_catalog_id = boundary_host_catalog_static.us_east_1_dev.id
+}
+
+resource boundary_host_set_static "rds" {
+  host_catalog_id = boundary_host_catalog_static.us_east_1_dev.id
+  name = "rds"
+  host_ids = [
+    boundary_host_static.rds.id
+  ]
+}
+
+resource "boundary_target" "db" {
+  name         = "rds_remote_access"
+  #description  = "Foo target"
+  type         = "tcp"
+  default_port = "5432"
+  scope_id     = boundary_scope.project.id
+  host_source_ids = [
+    boundary_host_set_static.rds.id
+  ]
+  
+}
+
 
 
 #################### users
