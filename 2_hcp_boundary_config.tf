@@ -98,7 +98,7 @@ resource "boundary_target" "web" {
 resource "boundary_host_static" "rds" {
   name            = "${var.app_prefix}_rds_${var.environment}"
   description     = "dB for ${var.app_prefix} in ${var.environment}"
-  address         = aws_db_instance.rds.address
+  address         = aws_db_instance.db.address
   host_catalog_id = boundary_host_catalog_static.us_east_1_dev.id
 }
 
