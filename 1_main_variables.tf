@@ -5,7 +5,7 @@ variable "region" {
 
 variable "app_prefix" {
   description = "prefix of the app that will be created in AWS"
-  default     = "dales-dead-bug_frontend"
+  default     = "dales-dead-bug-frontend"
 }
 
 variable "environment" {
