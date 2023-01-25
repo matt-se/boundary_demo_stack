@@ -1,6 +1,6 @@
 resource "aws_db_subnet_group" "subnet" {
   name       = "${var.app_prefix}_db_subnet_${var.environment}"
-  subnet_ids = [aws_vpc.vpc.subnet_ids ]
+  subnet_ids = [aws_vpc.vpc.subnet_id]
 }
 
 
