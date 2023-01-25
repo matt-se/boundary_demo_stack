@@ -11,7 +11,7 @@ resource "aws_db_instance" "db" {
   engine               = "postgres"
   instance_class       = "db.t3.micro"
   username             = var.aws_rds_username
-  password             = var.aws_rds_username
+  password             = var.aws_rds_password
   skip_final_snapshot  = true
   db_subnet_group_name = aws_db_subnet_group.subnet.name
 }
