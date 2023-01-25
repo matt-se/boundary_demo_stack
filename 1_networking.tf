@@ -17,7 +17,9 @@ resource "aws_internet_gateway" "igw" {
 resource "aws_subnet" "subnet_public" {
   vpc_id     = aws_vpc.vpc.id
   cidr_block = var.cidr_subnet
-  name = "${var.app_prefix}_subnet_public_${var.environment}"
+  tags = {
+    Name = "${var.app_prefix}_subnet_public_${var.environment}"
+  }
 }
 
 resource "aws_route_table" "rtb_public" {
