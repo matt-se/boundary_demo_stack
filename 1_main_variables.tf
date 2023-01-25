@@ -65,7 +65,7 @@ variable "cidr_vpc" {
 }
 variable "cidr_subnet" {
   description = "CIDR block for the subnet"
-  default     = "10.0.1.0/24
+  default     = "10.0.1.0/24"
 }
 variable "cidr_subnet2" {
   description = "CIDR block for the subnet"
