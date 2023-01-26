@@ -1,6 +1,6 @@
 # boundary_demo_stack
 
-Creates a fully-functional HCP Boundary demo stack.
+Creates a fully-functional HCP Boundary demo environment.
 
 - configures HCP Boundary cluster
 - builds AWS infr (web servers, PKI worker, RDS instance)
@@ -25,7 +25,6 @@ steps:
 
 
 
-to log into the RDS cluster:
 boundary authenticate password \
    -auth-method-id=$BOUNDARY_AUTH_METHOD_ID \
    -login-name=bobby-hill
