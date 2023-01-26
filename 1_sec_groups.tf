@@ -56,3 +56,15 @@ resource "aws_security_group" "sg_db" {
     security_groups = [aws_security_group.sg_worker.id]
 }
 }
+
+resource "aws_security_group" "sg_windows" {
+  name   = "${var.app_prefix}_windows_sg_${var.environment}"
+  vpc_id = aws_vpc.vpc.id
+
+  ingress {
+    from_port   = 3389
+    to_port     = 3389
+    protocol    = "tcp"
+    security_groups = [aws_security_group.sg_worker.id]
+}
+}

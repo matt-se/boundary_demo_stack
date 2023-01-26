@@ -121,3 +121,15 @@ variable "aws_rds_username" {
 variable "aws_rds_password" {
   default     = "passwordpassword123"
 }
+
+
+##########   AWS windows instance
+variable "windows_ami" {
+  description = "ami to use for the windows instance"
+  default     = "ami-03cf1a25c0360a382"
+}
+
+variable "windows_path_to_public_key" {
+  default       = "dales-dead-bug_frontend_windows_dev_keypair.pem.pub"
+}
+
