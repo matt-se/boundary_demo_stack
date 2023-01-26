@@ -25,7 +25,6 @@ steps:
 
 
 
-to log into the RDS cluster:
 boundary authenticate password \
    -auth-method-id=$BOUNDARY_AUTH_METHOD_ID \
    -login-name=bobby-hill
