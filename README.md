@@ -3,7 +3,7 @@
 Creates a fully-functional HCP Boundary demo stack.
 
 - configures HCP Boundary cluster
-- builds AWS infr (web servers, PKI worker, dB)
+- builds AWS infr (web servers, PKI worker, RDS instance)
 - sets AWS security groups and networking rules to force traffic through Boundary.
 
 
@@ -23,3 +23,12 @@ steps:
 6. SSH into the PKI worker EC2 instance and execute the commands in the boundary_setup.sh file (or run it).
 7. Now you can log into Boundary as the user that was created in the TF and connect to a target!
 
+
+
+to log into the RDS cluster:
+boundary authenticate password \
+   -auth-method-id=$BOUNDARY_AUTH_METHOD_ID \
+   -login-name=bobby-hill
+
+boundary connect postgres -target-id=<target-id> -username matty -dbname mydb
+boundary connect ssh -target-id=tssh_3ZJ3WsF5cP     
