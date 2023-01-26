@@ -94,6 +94,7 @@ resource "boundary_target" "web" {
   ]
 }
 
+
 ### RDS host
 resource "boundary_host_static" "rds" {
   name            = "${var.app_prefix}_rds_${var.environment}"
@@ -112,15 +113,14 @@ resource boundary_host_set_static "rds" {
 
 resource "boundary_target" "db" {
   name         = "rds_remote_access"
-  #description  = "Foo target"
   type         = "tcp"
   default_port = "5432"
   scope_id     = boundary_scope.project.id
   host_source_ids = [
     boundary_host_set_static.rds.id
   ]
-  
 }
+
 
 
 ### windows
@@ -136,6 +136,16 @@ resource boundary_host_set_static "win_servers" {
   name = "win_servers"
   host_ids = [
     boundary_host_static.win_server.id
+  ]
+}
+
+resource "boundary_target" "win" {
+  name         = "win_remote_access"
+  type         = "tcp"
+  default_port = "3389"
+  scope_id     = boundary_scope.project.id
+  host_source_ids = [
+    boundary_host_set_static.win_servers.id
   ]
 }
 
