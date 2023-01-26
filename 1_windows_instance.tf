@@ -16,7 +16,7 @@ resource "aws_key_pair" "key_for_ssh_acccess_to_windows_server" {
 
 
 resource "aws_instance" "windows" {
-  ami           = var.windows_ami
+  ami           = data.aws_ami.windows-2022
   instance_type = "t2.micro"
   subnet_id     = aws_subnet.subnet_public.id
   key_name = aws_key_pair.key_for_ssh_acccess_to_windows_server.key_name

@@ -123,6 +123,22 @@ resource "boundary_target" "db" {
 }
 
 
+### windows
+resource "boundary_host_static" "win_server" {
+  name            = "${var.app_prefix}_win_${var.environment}"
+  description     = "windows server for ${var.app_prefix} in ${var.environment}"
+  address         = aws_instance.windows.private_ip
+  host_catalog_id = boundary_host_catalog_static.us_east_1_dev.id
+}
+
+resource boundary_host_set_static "win_servers" {
+  host_catalog_id = boundary_host_catalog_static.us_east_1_dev.id
+  name = "win_servers"
+  host_ids = [
+    boundary_host_static.win_server.id
+  ]
+}
+
 
 #################### users
 
