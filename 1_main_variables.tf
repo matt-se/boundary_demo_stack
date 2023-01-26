@@ -104,7 +104,7 @@ variable "worker_path_to_public_key" {
 }
 
 variable "worker_path_to_private_key" {
-  default       = "key.pem"
+  default       = "dales-dead-bug_frontend_boundary_pki_worker_dev_keypair.pem"
 }
 
 variable "worker_key_user" {
