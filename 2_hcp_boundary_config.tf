@@ -170,4 +170,5 @@ resource "boundary_worker" "worker" {
   name        = "${var.app_prefix}_worker_${var.environment}"
   description = "${var.app_prefix}_worker_${var.environment}"
   scope_id    = "global"
+  address     = aws_instance.boundary_worker.public_ip
 }
