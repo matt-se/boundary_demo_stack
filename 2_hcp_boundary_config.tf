@@ -149,7 +149,7 @@ resource "boundary_group" "external_it_services_devs" {
   name        = "external_it_services_devs"
   description = "external_it_services_devs"
   member_ids  = [boundary_user.bobby-hill.id]
-  scope_id    = boundary_scope.project.id
+  scope_id    = boundary_scope.org.id
 }
 
 resource "boundary_role" "devs_read_only" {
@@ -158,7 +158,7 @@ resource "boundary_role" "devs_read_only" {
   principal_ids = [
     boundary_group.external_it_services_devs.id
   ]
-  scope_id    = boundary_scope.project.id
+  scope_id    = boundary_scope.org.id
   grant_strings = ["id=*;type=*;actions=read,list"]
 }
 
