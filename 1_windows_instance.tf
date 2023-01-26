@@ -18,7 +18,7 @@ resource "aws_instance" "windows" {
   ami           = data.aws_ami.windows-2022.id
   instance_type = "t2.micro"
   subnet_id     = aws_subnet.subnet_public.id
-  key_name = aws_key_pair.key_for_ssh_acccess_to_windows_server.key_name
+  key_name = aws_key_pair.key_for_windows_server.key_name
   vpc_security_group_ids      = [aws_security_group.sg_windows.id]
   associate_public_ip_address = false
 
