@@ -7,7 +7,7 @@ listener "tcp" {
         
 worker {
   public_addr = "174.129.142.63"
-  controller_generated_activation_token = "neslat_2KrcHSPQZQDTPPaFR4Fc3Pf1SVkALuCus3Y1zUgfypFxZUr8s17vNqoyEyuMUBEvrwSCox3ZykwSWGJByv5oRkDksDgQu"
+  controller_generated_activation_token = "neslat_2KrckRHxymj1Lg6onrwSwdpuqwWN5tsVyab88z9AKwESrTi9geCjtWMAbgjqT3ihBmDqNtz9FMgKu2MwiYUkpYqKFpTQf"
   auth_storage_path = "home/ubuntu/boundary/worker1"
   tags {
     type = ["worker"]
