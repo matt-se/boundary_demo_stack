@@ -1,5 +1,5 @@
 disable_mlock = true
-hcp_boundary_cluster_id = "e9ac2d61-1eda-44e8-9d86-e456659b8bf7"
+hcp_boundary_cluster_id = "98814fc9-b650-4469-96c0-5397232f19b1"
 listener "tcp" {
   address = "0.0.0.0:9202"
   purpose = "proxy"
@@ -7,9 +7,10 @@ listener "tcp" {
         
 worker {
   public_addr = "174.129.142.63"
-  controller_generated_activation_token = "neslat_2KrckRHxymj1Lg6onrwSwdpuqwWN5tsVyab88z9AKwESrTi9geCjtWMAbgjqT3ihBmDqNtz9FMgKu2MwiYUkpYqKFpTQf"
+  controller_generated_activation_token = "neslat_2KqsXTT2FSxgjkKxwCzo3NZ7bPNDvE36vxHiSLKUtSjjPTD1MDeGDWKjBDCE3e4wNTZym9azZsKoW5RaaACWY8WXJu4Ca"
   auth_storage_path = "home/ubuntu/boundary/worker1"
   tags {
     type = ["worker"]
   }
 }
+

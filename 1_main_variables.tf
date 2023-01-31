@@ -33,7 +33,7 @@ variable "tfc_org" {
 
 #########  HCP Boundary
 variable "boundary_url" {
-  default     = "https://e9ac2d61-1eda-44e8-9d86-e456659b8bf7.boundary.hashicorp.cloud"
+  default     = "https://98814fc9-b650-4469-96c0-5397232f19b1.boundary.hashicorp.cloud"
 }
 
 variable "boundary_auth_id" {
