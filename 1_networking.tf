@@ -17,7 +17,7 @@ resource "aws_internet_gateway" "igw" {
 resource "aws_subnet" "subnet_public" {
   vpc_id     = aws_vpc.vpc.id
   cidr_block = var.cidr_subnet
-  availability_zone = "us-east-2c"
+  availability_zone = "us-east-2b"
   tags = {
     Name = "${var.app_prefix}_subnet_public_${var.environment}"
   }
@@ -26,7 +26,7 @@ resource "aws_subnet" "subnet_public" {
 resource "aws_subnet" "subnet_public2" {
   vpc_id     = aws_vpc.vpc.id
   cidr_block = var.cidr_subnet2
-  availability_zone = "us-east-2d"
+  availability_zone = "us-east-2a"
   tags = {
     Name = "${var.app_prefix}_subnet_public_2_${var.environment}"
   }
