@@ -1,6 +1,6 @@
 variable "region" {
   description = "The region Terraform deploys your instance"
-  default     = "us-east-1"
+  default     = "us-east-2"
 }
 
 variable "app_prefix" {
@@ -37,7 +37,7 @@ variable "boundary_url" {
 }
 
 variable "boundary_auth_id" {
-  default     = "ampw_DOlloiL9SB"
+  default     = "ampw_s06oRsCdpU"
 }
 
 
