@@ -1,5 +1,5 @@
 resource "aws_db_subnet_group" "subnet" {
-  name       = "${var.app_prefix}_db_subnet_${var.environment}"
+  name       = "${var.app_prefix}_db_sn_${var.environment}"
   subnet_ids = [aws_subnet.subnet_public.id, aws_subnet.subnet_public2.id]
 }
 
