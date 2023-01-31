@@ -175,7 +175,7 @@ resource "boundary_group" "external_it_services_devs" {
   scope_id    = boundary_scope.org.id
 }
 
-/*
+
 resource "boundary_role" "devs_read_only" {
   name        = "devs_read_only"
   description = "My first role!"
@@ -183,9 +183,9 @@ resource "boundary_role" "devs_read_only" {
     boundary_group.external_it_services_devs.id
   ]
   scope_id    = boundary_scope.project.id
-  grant_strings = ["id=*;type=target;actions=read,list,authorize-session"]
+  grant_strings = ["id=*;type=target;actions=list,read,authorize-session"]
 }
-*/
+
 
 
 #################### workers
