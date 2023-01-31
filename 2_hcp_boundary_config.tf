@@ -21,7 +21,6 @@ resource "boundary_scope" "project" {
 
 
 ####################  creds
-
 resource "boundary_credential_store_static" "web_server_certs" {
   name        = "cred store for web servers ${var.environment}"
   description = "My first static credential store!"
@@ -176,6 +175,7 @@ resource "boundary_group" "external_it_services_devs" {
   scope_id    = boundary_scope.org.id
 }
 
+/*
 resource "boundary_role" "devs_read_only" {
   name        = "devs_read_only"
   description = "My first role!"
@@ -185,11 +185,10 @@ resource "boundary_role" "devs_read_only" {
   scope_id    = boundary_scope.project.id
   grant_strings = ["id=*;type=target;actions=read,list,authorize-session"]
 }
-
+*/
 
 
 #################### workers
-
 resource "boundary_worker" "worker" {
   name        = "${var.app_prefix}_worker_${var.environment}"
   description = "${var.app_prefix}_worker_${var.environment}"
