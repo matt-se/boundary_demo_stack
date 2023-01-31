@@ -7,7 +7,7 @@ resource "aws_db_subnet_group" "subnet" {
 resource "aws_db_instance" "db" {
   allocated_storage    = 10
   db_name              = "mydb"
-  identifier           = "${var.app_prefix}-db-subnet-${var.environment}"
+  identifier           = "${var.app_prefix}-db-${var.environment}"
   engine               = "postgres"
   instance_class       = "db.t3.micro"
   username             = var.aws_rds_username
