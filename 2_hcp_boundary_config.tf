@@ -40,7 +40,6 @@ resource "boundary_credential_ssh_private_key" "web_server_key" {
 
 
 ####################  hosts
-
 resource "boundary_host_catalog_static" "us_east_1_dev" {
   name        = "us-east-1-dev"
   description = "Dev AWS resources in us-east-1"
@@ -151,7 +150,6 @@ resource "boundary_target" "win" {
 
 
 #################### users
-
 resource "boundary_auth_method" "password" {
   scope_id = boundary_scope.org.id
   type     = "password"
