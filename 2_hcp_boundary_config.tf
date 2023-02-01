@@ -183,7 +183,7 @@ resource "boundary_role" "devs_read_only" {
     boundary_group.external_it_services_devs.id
   ]
   scope_id    = boundary_scope.project.id
-  grant_strings = ["id=*;type=target;actions=list,read,authorize-session"]
+  grant_strings = ["id=*;type=target;actions=list,read,authorize-session","id=*;type=session;actions=read"]
 }
 
 
