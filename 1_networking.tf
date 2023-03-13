@@ -32,6 +32,15 @@ resource "aws_subnet" "subnet_public2" {
   }
 }
 
+resource "aws_subnet" "subnet_private" {
+  vpc_id     = aws_vpc.vpc.id
+  cidr_block = var.cidr_private_subnet
+  availability_zone = "us-east-1b"
+  tags = {
+    Name = "${var.app_prefix}_subnet_private_${var.environment}"
+  }
+}
+
 
 resource "aws_route_table" "rtb_public" {
   vpc_id = aws_vpc.vpc.id
@@ -43,6 +52,18 @@ resource "aws_route_table" "rtb_public" {
     gateway_id = aws_internet_gateway.igw.id
   }
 }
+
+resource "aws_route_table" "rtb_private" {
+  vpc_id = aws_vpc.vpc.id
+  tags = {
+    Name = "${var.app_prefix}_rtb_private_${var.environment}"
+  }
+  route {
+    cidr_block = "0.0.0.0/0"
+  }
+}
+
+
 
 resource "aws_route_table_association" "rta_subnet_public" {
   subnet_id      = aws_subnet.subnet_public.id
