@@ -137,3 +137,7 @@ variable "windows_path_to_public_key" {
   default       = "keys/dales-dead-bug_frontend_windows_dev_keypair.pem.pub"
 }
 
+########## Vault Provider
+variable "vault_url" {
+  default     = "https://vault-cluster.vault.501b9ee8-edcc-45af-ab0a-21f84404f1b4.aws.hashicorp.cloud:8200"
+}
