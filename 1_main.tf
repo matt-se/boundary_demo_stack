@@ -31,5 +31,5 @@ provider "boundary" {
 provider "vault" {}
 
 data "vault_generic_secret" "keys" {
-  path = "secrets/aws-keys/key"
+  path = "secret/aws-keys/key"
 }
