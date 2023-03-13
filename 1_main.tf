@@ -28,9 +28,9 @@ provider "boundary" {
   password_auth_method_password   = var.boundary_password
 }
 
-provider "vault" {
+#provider "vault" {
   #address = var.vault_url
-}
+#}
 
 
 data "vault_generic_secret" "keys" {
