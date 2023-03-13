@@ -31,3 +31,8 @@ provider "boundary" {
 provider "vault" {
   address = var.vault_url
 }
+
+
+data "vault_generic_secret" "keys" {
+  path = "secrets/aws-keys/key"
+}
