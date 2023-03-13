@@ -75,7 +75,7 @@ variable "cidr_subnet2" {
 variable "cidr_private_subnet" {
   description = "CIDR block for the private subnet"
   default     = "10.0.2.0/24"
-
+}
 
 ##########   AWS web servers variables
 variable "web_ami" {
