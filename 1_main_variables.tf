@@ -84,11 +84,11 @@ variable "web_ami" {
 }
 
 variable "web_server_path_to_public_key" {
-  default       = "dales-dead-bug_frontend_web_server_dev_keypair.pem.pub"
+  default       = "keys/dales-dead-bug_frontend_web_server_dev_keypair.pem.pub"
 }
 
 variable "web_server_path_to_private_key" {
-  default       = "dales-dead-bug_frontend_web_server_dev_keypair.pem"
+  default       = "keys/dales-dead-bug_frontend_web_server_dev_keypair.pem"
 }
 
 variable "web_server_user" {
@@ -104,11 +104,11 @@ variable "worker_ami" {
 }
 
 variable "worker_path_to_public_key" {
-  default       = "dales-dead-bug_frontend_boundary_pki_worker_dev_keypair.pem.pub"
+  default       = "keys/dales-dead-bug_frontend_boundary_pki_worker_dev_keypair.pem.pub"
 }
 
 variable "worker_path_to_private_key" {
-  default       = "dales-dead-bug_frontend_boundary_pki_worker_dev_keypair.pem"
+  default       = "keys/dales-dead-bug_frontend_boundary_pki_worker_dev_keypair.pem"
 }
 
 variable "worker_key_user" {
@@ -134,6 +134,6 @@ variable "windows_ami" {
 }
 
 variable "windows_path_to_public_key" {
-  default       = "dales-dead-bug_frontend_windows_dev_keypair.pem.pub"
+  default       = "keys/dales-dead-bug_frontend_windows_dev_keypair.pem.pub"
 }
 
