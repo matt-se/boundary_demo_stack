@@ -1,4 +1,4 @@
-resource "aws_key_pair" "key_for_ssh_acccess_to_worker" {
+resource "aws_key_pair" "key_for_ssh_acccess_to__downstream_worker" {
   key_name   = "${var.app_prefix}_boundary_pki_worker_${var.environment}_keypair"
   public_key = file(var.worker_path_to_public_key)
 }
