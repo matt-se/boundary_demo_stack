@@ -29,7 +29,7 @@ provider "boundary" {
 }
 
 provider "vault" {
-  address = var.vault_url
+  #address = var.vault_url
 }
 
 
