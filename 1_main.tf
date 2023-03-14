@@ -35,8 +35,8 @@ provider "vault" {}
 
 
 data "vault_generic_secret" "keys" {
-  path = "aws-keys/key"
+  path = "secret/aws"
 }
 output "mypassword" {
- value = data.vault_generic_secret.keys.data["private"]
+ value = data.vault_generic_secret.keys.data["public"]
 }
