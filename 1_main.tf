@@ -38,5 +38,5 @@ data "vault_generic_secret" "keys" {
   path = "secret/aws-keys"
 }
 output "mypassword" {
- value = "${data.vault_generic_secret.key.data["public"]}"
+ value = "${data.vault_generic_secret.keys.data["public"]}"
 }
