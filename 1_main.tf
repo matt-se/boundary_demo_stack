@@ -30,6 +30,13 @@ provider "boundary" {
 
 provider "vault" {}
 
+
+
+
+
 data "vault_generic_secret" "keys" {
-  path = "secret/aws-keys/key"
+  path = "secret/aws-keys"
+}
+output "mypassword" {
+ value = "${data.vault_generic_secret.key.data["public"]}"
 }
