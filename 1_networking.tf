@@ -60,9 +60,6 @@ resource "aws_route_table" "rtb_private" {
   tags = {
     Name = "${var.app_prefix}_rtb_private_${var.environment}"
   }
-  route {
-    cidr_block = "0.0.0.0/0"
-  }
 }
 
 
@@ -76,3 +73,13 @@ resource "aws_route_table_association" "rta_subnet_public2" {
   subnet_id      = aws_subnet.subnet_public2.id
   route_table_id = aws_route_table.rtb_public.id
 }
+
+
+resource "aws_route_table_association" "rta_subnet_private" {
+  subnet_id      = aws_subnet.subnet_private.id
+  route_table_id = aws_route_table.rtb_private.id
+}
+
+
+
+
