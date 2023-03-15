@@ -44,6 +44,10 @@ output "boundary_worker_reg_code" {
   value = boundary_worker.worker.controller_generated_activation_token
 }
 
+output "boundary_worker_downstream_reg_code" {
+  value = boundary_worker.downstream_worker.controller_generated_activation_token
+}
+
 output "db_instance_id" {
   value = aws_db_instance.db.id
 }

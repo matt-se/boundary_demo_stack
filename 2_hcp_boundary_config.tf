@@ -197,3 +197,9 @@ resource "boundary_worker" "worker" {
   description = "${var.app_prefix}_worker_${var.environment}"
   scope_id    = "global"
 }
+
+resource "boundary_worker" "downstream_worker" {
+  name        = "${var.app_prefix}_downstream_worker_${var.environment}"
+  description = "${var.app_prefix}_downstream_worker_${var.environment}"
+  scope_id    = "global"
+}
