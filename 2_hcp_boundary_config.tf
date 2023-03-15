@@ -90,6 +90,7 @@ resource "boundary_target" "web" {
   injected_application_credential_source_ids = [
     boundary_credential_ssh_private_key.web_server_key.id
   ]
+  ingress_worker_filter = "\"worker\" in \"/tags/type\""
 }
 
 
@@ -117,6 +118,7 @@ resource "boundary_target" "db" {
   host_source_ids = [
     boundary_host_set_static.rds.id
   ]
+  ingress_worker_filter = "\"worker\" in \"/tags/type\""
 }
 
 
