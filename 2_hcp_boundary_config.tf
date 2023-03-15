@@ -187,12 +187,10 @@ resource "boundary_role" "devs_read_only" {
 }
 
 
-/*
+
 #################### workers
 resource "boundary_worker" "worker" {
   name        = "${var.app_prefix}_worker_${var.environment}"
   description = "${var.app_prefix}_worker_${var.environment}"
   scope_id    = "global"
 }
-
-*/
