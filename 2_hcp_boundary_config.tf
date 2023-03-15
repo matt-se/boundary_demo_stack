@@ -145,7 +145,7 @@ resource "boundary_target" "win" {
   host_source_ids = [
     boundary_host_set_static.win_servers.id
   ]
-  ingress_worker_filter = ""worker" in "/tags/type""
+  ingress_worker_filter = "'worker' in '/tags/type'"
 }
 
 
