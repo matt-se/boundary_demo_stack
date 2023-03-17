@@ -1,6 +1,6 @@
 resource "aws_key_pair" "key_for_ssh_acccess_to_worker" {
   key_name   = "${var.app_prefix}_boundary_pki_worker_${var.environment}_keypair"
-  public_key = file(var.worker_path_to_public_key)
+  public_key = file(var.worker_public_key)
 }
 
 resource "aws_instance" "boundary_worker" {
