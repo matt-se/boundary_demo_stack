@@ -1,6 +1,6 @@
 resource "aws_key_pair" "key_for_ssh_acccess_to_web_server" {
   key_name   = "${var.app_prefix}_web_server_${var.environment}_keypair"
-  public_key = file(var.web_server_path_to_public_key)
+  public_key = file(var.web_server_public_key)
 }
 
 resource "aws_instance" "web" {
