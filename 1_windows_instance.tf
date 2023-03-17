@@ -10,7 +10,7 @@ data "aws_ami" "windows-2022" {
 
 resource "aws_key_pair" "key_for_windows_server" {
   key_name   = "${var.app_prefix}_win_server_${var.environment}_keypair"
-  public_key = file(var.windows_public_key)
+  public_key = file(var.windows_path_to_public_key)
 }
 
 
