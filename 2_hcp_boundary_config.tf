@@ -32,7 +32,7 @@ resource "boundary_credential_ssh_private_key" "web_server_key" {
   description            = "My first ssh private key credential!"
   credential_store_id    = boundary_credential_store_static.web_server_certs.id
   username               = var.web_server_user
-  private_key            = file(var.web_server_path_to_private_key)
+  private_key            = file(var.web_server_private_key)
   #private_key_passphrase = "optional-passphrase"
 }
 
