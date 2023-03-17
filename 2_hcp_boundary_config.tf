@@ -90,6 +90,7 @@ resource "boundary_target" "web" {
   injected_application_credential_source_ids = [
     boundary_credential_ssh_private_key.web_server_key.id
   ]
+  ingress_worker_filter = "\"worker\" in \"/tags/type\""
 }
 
 
@@ -117,6 +118,7 @@ resource "boundary_target" "db" {
   host_source_ids = [
     boundary_host_set_static.rds.id
   ]
+  ingress_worker_filter = "\"worker\" in \"/tags/type\""
 }
 
 
@@ -145,6 +147,7 @@ resource "boundary_target" "win" {
   host_source_ids = [
     boundary_host_set_static.win_servers.id
   ]
+  ingress_worker_filter = "\"worker\" in \"/tags/type\""
 }
 
 
@@ -192,5 +195,11 @@ resource "boundary_role" "devs_read_only" {
 resource "boundary_worker" "worker" {
   name        = "${var.app_prefix}_worker_${var.environment}"
   description = "${var.app_prefix}_worker_${var.environment}"
+  scope_id    = "global"
+}
+
+resource "boundary_worker" "downstream_worker" {
+  name        = "${var.app_prefix}_downstream_worker_${var.environment}"
+  description = "${var.app_prefix}_downstream_worker_${var.environment}"
   scope_id    = "global"
 }
