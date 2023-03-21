@@ -182,7 +182,7 @@ resource "boundary_host_static" "ssm" {
   name            = "${var.app_prefix}_ssm_${var.environment}"
   description     = "ssm for ${var.app_prefix} in ${var.environment}"
   address         = "127.0.0.1"
-
+}
 resource boundary_host_set_static "ssm" {
   host_catalog_id = boundary_host_catalog_static.us_east_1_dev.id
   name = "ssm"
