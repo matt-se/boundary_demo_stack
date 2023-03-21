@@ -28,16 +28,3 @@ provider "boundary" {
   password_auth_method_password   = var.boundary_password
 }
 
-#provider "vault" {}
-
-
-
-
-/*
-data "vault_generic_secret" "keys" {
-  path = "secret/aws"
-}
-output "mypassword" {
- value = data.vault_generic_secret.keys.data["public"]
-}
-*/
