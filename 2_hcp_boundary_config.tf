@@ -36,6 +36,29 @@ resource "boundary_credential_ssh_private_key" "web_server_key" {
   #private_key_passphrase = "optional-passphrase"
 }
 
+resource "boundary_credential_store_vault" "vault-aws" {
+  name        = "vault-aws"
+  description = "My first Vault credential store!"
+  address     = var.vault_url
+  token       = var.vault_token
+  scope_id    = boundary_scope.project.id
+}
+resource "boundary_credential_library_vault" "vault-aws" {
+  name                = "get-aws-iam-creds"
+  description         = "My first Vault credential library!"
+  credential_store_id = boundary_credential_store_vault.vault-aws.id
+  path                = "aws/creds/vault-demo-iam-user"
+  http_method         = "GET"
+}
+
+
+
+
+
+
+
+
+
 
 
 ####################  hosts
@@ -149,6 +172,43 @@ resource "boundary_target" "win" {
   ]
   ingress_worker_filter = "\"worker\" in \"/tags/type\""
 }
+
+
+
+
+
+### dummy for SSM
+resource "boundary_host_static" "ssm" {
+  name            = "${var.app_prefix}_ssm_${var.environment}"
+  description     = "ssm for ${var.app_prefix} in ${var.environment}"
+  address         = "127.0.0.1"
+
+resource boundary_host_set_static "ssm" {
+  host_catalog_id = boundary_host_catalog_static.us_east_1_dev.id
+  name = "ssm"
+  host_ids = [
+    boundary_host_static.ssm.id
+  ]
+}
+
+resource "boundary_target" "ssm" {
+  name         = "ssm_remote_access"
+  type         = "tcp"
+  default_port = "9999"
+  scope_id     = boundary_scope.project.id
+  host_source_ids = [
+    boundary_host_set_static.ssm.id
+  ]
+  ingress_worker_filter = "\"worker\" in \"/tags/type\""
+  brokered_credential_source_ids = [
+    boundary_credential_library_vault.vault-aws.id
+  ]
+}
+
+
+
+
+
 
 
 #################### users

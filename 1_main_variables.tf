@@ -141,3 +141,7 @@ variable "windows_public_key" {
 variable "vault_url" {
   default     = "https://vault-cluster.vault.501b9ee8-edcc-45af-ab0a-21f84404f1b4.aws.hashicorp.cloud:8200"
 }
+
+variable "vault_token" {
+  default = "sfsdfsdfsdf"
+}
