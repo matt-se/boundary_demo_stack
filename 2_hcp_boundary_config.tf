@@ -42,6 +42,7 @@ resource "boundary_credential_store_vault" "vault-aws" {
   address     = var.vault_url
   token       = var.vault_token
   scope_id    = boundary_scope.project.id
+  namespace   = "admin"
 }
 resource "boundary_credential_library_vault" "vault-aws" {
   name                = "get-aws-iam-creds"
