@@ -31,7 +31,7 @@ sudo apt-get update && sudo apt-get install boundary-worker-hcp -y
 sudo touch /home/ubuntu/boundary/pki-worker.hcl
 
 printf "disable_mlock = true
-hcp_boundary_cluster_id = "${boundary_cluster_id}"
+hcp_boundary_cluster_id = "${var.boundary_cluster_id}"
 listener "tcp" {
   address = "0.0.0.0:9202"
   purpose = "proxy"
