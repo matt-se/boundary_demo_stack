@@ -39,7 +39,7 @@ listener "tcp" {
         
 worker {
   public_addr = "44.201.8.40"
-  controller_generated_activation_token = "${boundary_worker_activation_token}"
+  controller_generated_activation_token = "${boundary_worker.worker.controller_generated_activation_token}"
   auth_storage_path = "home/ubuntu/boundary/worker1"
   tags {
     type = ["worker"]
