@@ -36,6 +36,10 @@ variable "boundary_url" {
   default     = "https://98814fc9-b650-4469-96c0-5397232f19b1.boundary.hashicorp.cloud"
 }
 
+variable "boundary_cluster_id" {
+  default     = "98814fc9-b650-4469-96c0-5397232f19b1"
+}
+
 variable "boundary_auth_id" {
   default     = "ampw_s06oRsCdpU"
 }
