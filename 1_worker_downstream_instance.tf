@@ -21,7 +21,7 @@ resource "aws_instance" "boundary__downstream_worker" {
   connection {
       type        = "ssh"
       user        = var.worker_key_user
-      private_key = file(var.worker_path_to_private_key)
+      private_key = file(var.worker_private_key)
       host        = self.public_ip
     }
 }

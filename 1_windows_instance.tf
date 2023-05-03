@@ -10,7 +10,7 @@ data "aws_ami" "windows-2022" {
 
 resource "aws_key_pair" "key_for_windows_server" {
   key_name   = "${var.app_prefix}_win_server_${var.environment}_keypair"
-  public_key = file(var.windows_path_to_public_key)
+  public_key = var.windows_public_key
 }
 
 
@@ -31,7 +31,7 @@ resource "aws_instance" "windows" {
   connection {
       type        = "winrm"
       #user        = var.windows_key_user
-      private_key = file(var.windows_path_to_private_key)
+      private_key = var.windows_private_key
       host        = self.public_ip
     }
 }

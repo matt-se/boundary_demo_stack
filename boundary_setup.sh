@@ -4,5 +4,5 @@ sudo apt-add-repository -y "deb [arch=amd64] https://apt.releases.hashicorp.com 
 sudo apt-get update && sudo apt-get install boundary-worker-hcp -y
 sudo touch /home/ubuntu/boundary/pki-worker.hcl
 
-printf "foo" | sudo tee pki-worker.hcl
+printf "contents of hcl config file" | sudo tee pki-worker.hcl
 boundary-worker server -config="/home/ubuntu/boundary/pki-worker.hcl"

@@ -83,12 +83,12 @@ variable "web_ami" {
   default     = "ami-00874d747dde814fa"
 }
 
-variable "web_server_path_to_public_key" {
-  default       = "keys/dales-dead-bug_frontend_web_server_dev_keypair.pem.pub"
+variable "web_server_public_key" {
+#  default       = "keys/dales-dead-bug_frontend_web_server_dev_keypair.pem.pub"
 }
 
-variable "web_server_path_to_private_key" {
-  default       = "keys/dales-dead-bug_frontend_web_server_dev_keypair.pem"
+variable "web_server_private_key" {
+  #default       = "keys/dales-dead-bug_frontend_web_server_dev_keypair.pem"
 }
 
 variable "web_server_user" {
@@ -103,12 +103,12 @@ variable "worker_ami" {
   default     = "ami-00874d747dde814fa"
 }
 
-variable "worker_path_to_public_key" {
-  default       = "keys/dales-dead-bug_frontend_boundary_pki_worker_dev_keypair.pem.pub"
+variable "worker_public_key" {
+ # default       = "keys/dales-dead-bug_frontend_boundary_pki_worker_dev_keypair.pem.pub"
 }
 
-variable "worker_path_to_private_key" {
-  default       = "keys/dales-dead-bug_frontend_boundary_pki_worker_dev_keypair.pem"
+variable "worker_private_key" {
+  #default       = "keys/dales-dead-bug_frontend_boundary_pki_worker_dev_keypair.pem"
 }
 
 variable "worker_key_user" {
@@ -133,11 +133,15 @@ variable "windows_ami" {
   default     = "ami-03cf1a25c0360a382"
 }
 
-variable "windows_path_to_public_key" {
-  default       = "keys/dales-dead-bug_frontend_windows_dev_keypair.pem.pub"
+variable "windows_public_key" {
+  #default       = "keys/dales-dead-bug_frontend_windows_dev_keypair.pem.pub"
 }
 
 ########## Vault Provider
 variable "vault_url" {
   default     = "https://vault-cluster.vault.501b9ee8-edcc-45af-ab0a-21f84404f1b4.aws.hashicorp.cloud:8200"
+}
+
+variable "vault_token" {
+  default = "sfsdfsdfsdf"
 }
