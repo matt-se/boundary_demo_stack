@@ -28,3 +28,7 @@ provider "boundary" {
   password_auth_method_login_name = var.boundary_username
   password_auth_method_password   = var.boundary_password
 }
+
+provider "vault" {
+  address = "https://example.com"
+}
