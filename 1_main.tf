@@ -29,7 +29,9 @@ provider "boundary" {
   password_auth_method_password   = var.boundary_password
 }
 
+/*
 provider "vault" {
   address = "https://example.com"
   token = "xyz"
 }
+*/
