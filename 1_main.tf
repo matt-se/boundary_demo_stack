@@ -31,4 +31,5 @@ provider "boundary" {
 
 provider "vault" {
   address = "https://example.com"
+  token = "xyz"
 }
