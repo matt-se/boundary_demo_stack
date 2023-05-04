@@ -22,7 +22,9 @@ resource "aws_instance" "boundary_worker" {
     owner = var.owner
     version = var.app_version
   }
-
+  user_data_replace_on_change = true
+  user_data = "${file("script.txt")}"
+  /*
   user_data   = <<EOF
 mkdir /home/ubuntu/boundary/ && cd /home/ubuntu/boundary/
 curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
@@ -47,7 +49,7 @@ worker {
 }" | sudo tee pki-worker.hcl
 boundary-worker server -config="/home/ubuntu/boundary/pki-worker.hcl"
 EOF
-
+*/
 
 
   
