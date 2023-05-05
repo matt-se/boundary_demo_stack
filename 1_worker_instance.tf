@@ -20,10 +20,10 @@ resource "aws_instance" "boundary_worker" {
   user_data = templatefile("script.sh", {
     boundary_cluster_id = var.boundary_cluster_id,
     controller_generated_activation_token = boundary_worker.worker.controller_generated_activation_token,
-    public_ip = self.public_ip
-  
+    #public_ip = self.public_ip
   })
-  
+
+
   /*
   user_data   = <<-EOF
         #!/bin/bash
