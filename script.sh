@@ -17,7 +17,7 @@ listener "tcp" {
 }
         
 worker {
-  public_addr = $(curl 'http://checkip.amazonaws.com')
+  public_addr = 1.1.1.1
   controller_generated_activation_token = "${controller_generated_activation_token}"
   auth_storage_path = "home/ubuntu/boundary/worker1"
   tags {
