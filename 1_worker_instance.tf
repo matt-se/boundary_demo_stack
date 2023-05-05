@@ -17,9 +17,12 @@ resource "aws_instance" "boundary_worker" {
     version = var.app_version
   }
   user_data_replace_on_change = true
-  #user_data = "${file("script.sh")}"
+  user_data = templatefile("script.sh", {
+    boundary_cluster_id = var.boundary_cluster_id,
+    controller_generated_activation_token = boundary_worker.worker.controller_generated_activation_token
+  })
   
-  
+  /*
   user_data   = <<-EOF
         #!/bin/bash
         set -e
@@ -48,7 +51,7 @@ resource "aws_instance" "boundary_worker" {
         }" | sudo tee pki-worker.hcl
         boundary-worker server -config="/home/ubuntu/boundary/pki-worker.hcl"
         EOF
-
+*/
   
   connection {
       type        = "ssh"
