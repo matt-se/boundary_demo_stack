@@ -23,8 +23,9 @@ resource "aws_instance" "boundary_worker" {
     version = var.app_version
   }
   user_data_replace_on_change = true
-  #user_data = "${file("script.txt")}"
+  user_data = "${file("script.sh")}"
   
+  /*
   user_data   = <<-EOF
         mkdir /home/ubuntu/boundary/ && cd /home/ubuntu/boundary/
         curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
@@ -49,7 +50,7 @@ resource "aws_instance" "boundary_worker" {
         }" | sudo tee pki-worker.hcl
         boundary-worker server -config="/home/ubuntu/boundary/pki-worker.hcl"
         EOF
-
+*/
   
   connection {
       type        = "ssh"
