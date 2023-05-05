@@ -17,7 +17,7 @@ listener "tcp" {
 }
         
 worker {
-  public_addr = $(curl -s http://169.254.169.254/latest/meta-data/public-ipv4)
+  public_addr = "$(curl -s http://169.254.169.254/latest/meta-data/public-ipv4)"
   controller_generated_activation_token = "${controller_generated_activation_token}"
   auth_storage_path = "home/ubuntu/boundary/worker1"
   tags {
