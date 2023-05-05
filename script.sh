@@ -8,19 +8,22 @@ sudo apt-add-repository -y "deb [arch=amd64] https://apt.releases.hashicorp.com 
 sudo apt-get update && sudo apt-get install boundary-worker-hcp -y
 sudo touch /home/ubuntu/boundary/pki-worker.hcl
 
-printf "disable_mlock = true
-hcp_boundary_cluster_id = '${boundary_cluster_id}'
-listener 'tcp' {
-  address = '0.0.0.0:9202'
-  purpose = 'proxy'
+sudo cat << EOF  > /home/ubuntu/boundary/pki-worker.hcl
+disable_mlock = true
+hcp_boundary_cluster_id = "${boundary_cluster_id}"
+listener "tcp" {
+  address = "0.0.0.0:9202"
+  purpose = "proxy"
 }
         
 worker {
-  public_addr = '44.201.8.40'
-  controller_generated_activation_token = '${controller_generated_activation_token}'
-  auth_storage_path = 'home/ubuntu/boundary/worker1'
+  public_addr = "${public_ip}"
+  controller_generated_activation_token = "${controller_generated_activation_token}"
+  auth_storage_path = "home/ubuntu/boundary/worker1"
   tags {
-    type = ['worker']
+    type = ["worker"]
   }
-}" | sudo tee pki-worker.hcl
+}
+EOF
+
 boundary-worker server -config="/home/ubuntu/boundary/pki-worker.hcl"
