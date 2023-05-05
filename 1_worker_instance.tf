@@ -3,12 +3,6 @@ resource "aws_key_pair" "key_for_ssh_acccess_to_worker" {
   public_key = var.worker_public_key
 }
 
-#data "template_file" "user_data" {
-#  template = file("config.yaml")
-#}
-
-
-
 resource "aws_instance" "boundary_worker" {
   ami           = var.worker_ami
   instance_type = "t2.micro"
@@ -28,6 +22,9 @@ resource "aws_instance" "boundary_worker" {
   
   user_data   = <<-EOF
         #!/bin/bash
+        set -e
+        exec > >(tee /var/log/user-data.log) 2>&1
+
         mkdir /home/ubuntu/boundary/ && cd /home/ubuntu/boundary/
         curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
         sudo apt-add-repository -y "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"

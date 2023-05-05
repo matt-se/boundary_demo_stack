@@ -1,4 +1,9 @@
 #!/bin/bash
+
+set -e
+exec >/var/log/logfile.txt 2>&1
+
+
 mkdir /home/ubuntu/boundary/ && cd /home/ubuntu/boundary/
 curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
 sudo apt-add-repository -y "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
