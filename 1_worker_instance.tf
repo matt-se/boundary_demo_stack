@@ -25,7 +25,7 @@ resource "aws_instance" "boundary_worker" {
   user_data_replace_on_change = true
   #user_data = "${file("script.txt")}"
   
-  user_data   = -<<EOF
+  user_data   = <<-EOF
         mkdir /home/ubuntu/boundary/ && cd /home/ubuntu/boundary/
         curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
         sudo apt-add-repository -y "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
