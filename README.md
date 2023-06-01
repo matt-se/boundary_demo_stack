@@ -18,14 +18,12 @@ steps:
 1. Create three keypairs, one for the web servers, onw for the vault servers, and one for the pki workers. Do this either in AWS or locally (ssh-keygen -t rsa).  Set these at variables in the TFC workspace.  This is for SSH access and these will be set as Boundary credential stores.
 2. Set AWS account creds as TFC environmental variables.
 3. Create HCP Boundary cluster and get the cluster ID, URL, and admin un/pw
-4. Set the variables in TFC, and build it.  You should get the worker registration code as an output.
+4. Set the variables in TFC, and build it.  The workers should register automatically via the user_data script that is passed.
 5. Now you can log into Boundary as the user that was created in the TF and connect to a target!
 
 
 
-boundary authenticate password \
-   -auth-method-id=$BOUNDARY_AUTH_METHOD_ID \
-   -login-name=bobby-hill
+
    
  
 ----- connect to PSQL
