@@ -123,19 +123,6 @@ resource "boundary_host_set_static" "vault_servers" {
 }
 
 
-#boundary target for vault
-resource "boundary_target" "vault" {
-  name         = "vault_servers_remote_access"
-  type         = "tcp"
-  default_port = "8200"
-  scope_id     = boundary_scope.project.id
-  host_source_ids = [
-    boundary_host_set_static.vault_servers.id
-  ]
-  ingress_worker_filter = "\"worker\" in \"/tags/type\""
-}
-
-
 
 resource "boundary_target" "web" {
   name         = "web_servers_remote_access"
