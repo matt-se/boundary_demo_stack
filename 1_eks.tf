@@ -81,7 +81,7 @@ resource "boundary_host_static" "eks_server" {
   address         = aws_eks_cluster.eks_cluster.endpoint
   host_catalog_id = boundary_host_catalog_static.us_east_1_dev.id
   depends_on = [
-    aws_eks_cluster.eks
+    aws_eks_cluster.eks_cluster 
   ]
 }
 
@@ -97,7 +97,7 @@ resource "boundary_target" "eks_server" {
   depends_on = [
     aws_eks_cluster.eks_cluster
   ]
-  config = {
-    kube_config = base64encode(aws_eks_cluster.eks_cluster.kubeconfig)
-  }
+  #config = {
+  #  kube_config = base64encode(aws_eks_cluster.eks_cluster.kubeconfig)
+  #}
 }
