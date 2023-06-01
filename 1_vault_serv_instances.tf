@@ -86,6 +86,24 @@ resource "boundary_target" "vault" {
 }
 
 
+#################### creds
+resource "boundary_credential_store_static" "vault_server_certs" {
+  name        = "cred store for vault servers ${var.environment}"
+  scope_id    = boundary_scope.project.id
+}
+
+resource "boundary_credential_ssh_private_key" "vault_server_key" {
+  name                   = "ssh_private_key_for_vault_servers_${var.environment}"
+  credential_store_id    = boundary_credential_store_static.vault_server_certs.id
+  username               = "ec2-user"
+  private_key            = var.vault_private_key
+  #private_key_passphrase = "optional-passphrase"
+}
+
+
+
+
+
 ##### SECURITY GROUP
 resource "aws_security_group" "sg_vault_server" {
   name   = "${var.app_prefix}_vault_serv_sg_${var.environment}"

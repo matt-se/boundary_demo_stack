@@ -78,9 +78,9 @@ resource "boundary_target" "vault_ssh" {
   host_source_ids = [
     boundary_host_set_static.vault_servers.id
   ]
-  #injected_application_credential_source_ids = [
-  #  boundary_credential_ssh_private_key.vault_server_key.id
-  #]
+  injected_application_credential_source_ids = [
+    boundary_credential_ssh_private_key.vault_server_key.id
+  ]
   ingress_worker_filter = "\"worker\" in \"/tags/type\""
 }
 

@@ -68,7 +68,6 @@ resource "boundary_host_set_static" "web_servers" {
   ]
 }
 
-
 resource "boundary_target" "web" {
   name         = "web_servers_remote_access"
   #description  = "Foo target"
@@ -83,6 +82,24 @@ resource "boundary_target" "web" {
   ]
   ingress_worker_filter = "\"worker\" in \"/tags/type\""
 }
+
+
+resource "boundary_credential_store_static" "web_server_certs" {
+  name        = "cred store for web servers ${var.environment}"
+  description = "My first static credential store!"
+  scope_id    = boundary_scope.project.id
+}
+
+resource "boundary_credential_ssh_private_key" "web_server_key" {
+  name                   = "ssh_private_key"
+  description            = "My first ssh private key credential!"
+  credential_store_id    = boundary_credential_store_static.web_server_certs.id
+  username               = var.web_server_user
+  private_key            = var.web_server_private_key
+  #private_key_passphrase = "optional-passphrase"
+}
+
+
 
 
 ##### SECURITY GROUP
@@ -112,3 +129,4 @@ resource "aws_security_group" "sg_web_server" {
 output "web_instance_id" {
   value = aws_instance.web.id
 }
+
