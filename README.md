@@ -28,7 +28,15 @@ steps:
 boundary authenticate password \
    -auth-method-id=$BOUNDARY_AUTH_METHOD_ID \
    -login-name=bobby-hill
-
+   
+ 
+----- connect to PSQL
 boundary connect postgres -target-id=<target-id> -username matty -dbname mydb
    
+   
+----- connect to EC2 instance via credential injection
+In order to connect to an EC2 instance (vault or web target), start a connection in the desktop client and then do this in the terminal:
+ssh -p <port> ec2-user@127.0.0.1 
+
+Or you could also get the target ID and connect directly in the CLI:
 boundary connect ssh -target-id=tssh_3ZJ3WsF5cP     
