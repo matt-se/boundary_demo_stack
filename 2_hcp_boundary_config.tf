@@ -89,12 +89,10 @@ resource "boundary_target" "ssm" {
     boundary_host_set_static.ssm.id
   ]
   ingress_worker_filter = "\"worker\" in \"/tags/type\""
-  brokered_credential_source_ids = [
-    boundary_credential_library_vault.vault-aws.id
-  ]
+  #brokered_credential_source_ids = [
+  #  boundary_credential_library_vault.vault-aws.id
+  #]
 }
-
-
 
 
 #################### users
