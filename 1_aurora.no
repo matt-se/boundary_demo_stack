@@ -46,3 +46,31 @@ resource "boundary_target" "db" {
   ]
   ingress_worker_filter = "\"worker\" in \"/tags/type\""
 }
+
+
+
+
+####### outputs
+output "db_instance_id" {
+  value = aws_db_instance.db.id
+}
+  
+output "db_instance_endpoint" {
+  value = aws_db_instance.db.endpoint
+}
+
+output "db_instance_arn" {
+  value = aws_db_instance.db.arn
+}
+
+output "db_instance_address" {
+  value = aws_db_instance.db.address
+}
+
+output "rds_address" {
+  value = aws_db_instance.db.address
+}
+
+output "rds_id" {
+  value = aws_db_instance.db.id
+}

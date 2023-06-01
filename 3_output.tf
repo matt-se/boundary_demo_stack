@@ -47,27 +47,3 @@ output "boundary_worker_reg_code" {
 output "boundary_worker_downstream_reg_code" {
   value = boundary_worker.downstream_worker.controller_generated_activation_token
 }
-
-output "db_instance_id" {
-  value = aws_db_instance.db.id
-}
-  
-output "db_instance_endpoint" {
-  value = aws_db_instance.db.endpoint
-}
-
-output "db_instance_arn" {
-  value = aws_db_instance.db.arn
-}
-
-output "db_instance_address" {
-  value = aws_db_instance.db.address
-}
-
-output "rds_address" {
-  value = aws_db_instance.db.address
-}
-
-output "rds_id" {
-  value = aws_db_instance.db.id
-}
