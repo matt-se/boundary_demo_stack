@@ -3,7 +3,7 @@ resource "aws_eks_cluster" "eks_cluster" {
   role_arn = aws_iam_role.eks_cluster_role.arn
 
   vpc_config {
-    subnet_ids         = [aws_subnet.eks_subnet.id]
+    subnet_ids         = [aws_subnet.subnet_public.id]
     security_group_ids = [aws_security_group.eks_cluster_sg.id]
   }
 }
@@ -35,7 +35,7 @@ resource "aws_iam_role_policy_attachment" "eks_cluster_policy" {
 resource "aws_security_group" "eks_cluster_sg" {
   name        = "eks_cluster_sg_${var.app_prefix}_${var.environment}"
   description = "EKS Cluster Security Group"
-  vpc_id      = aws_vpc.eks_vpc.id
+  vpc_id      = aws_vpc.vpc.id
 }
 
 resource "aws_security_group_rule" "eks_cluster_ingress" {

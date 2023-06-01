@@ -83,3 +83,30 @@ resource "aws_route_table_association" "rta_subnet_private" {
 
 
 
+####### Boundary host and target config ########
+
+#boundary host for eks
+resource "boundary_host_static" "eks_server" {
+  name            = "${var.app_prefix}_eks_${var.environment}"
+  description     = "eks server for ${var.app_prefix} in ${var.environment}"
+  address         = aws_eks_cluster.eks.endpoint
+  host_catalog_id = boundary_host_catalog_static.us_east_1_dev.id
+  depends_on = [
+    aws_eks_cluster.eks
+  ]
+}
+
+#boundary target for eks
+resource "boundary_target_static" "eks_server" {
+  name            = "${var.app_prefix}_eks_${var.environment}"
+  description     = "eks server for ${var.app_prefix} in ${var.environment}"
+  type            = "kubernetes"
+  host_catalog_id = boundary_host_catalog_static.us_east_1_dev.id
+  target_catalog_id = boundary_target_catalog_static.us_east_1_dev.id
+  depends_on = [
+    aws_eks_cluster.eks
+  ]
+  config = {
+    kube_config = base64encode(aws_eks_cluster.eks.kubeconfig)
+  }
+}
