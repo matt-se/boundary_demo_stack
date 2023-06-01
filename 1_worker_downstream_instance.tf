@@ -27,3 +27,28 @@ resource "aws_instance" "boundary__downstream_worker" {
 }
 
 
+###### Security Group for Worker ######
+resource "aws_security_group" "sg_downstream_worker" {
+  name   = "${var.app_prefix}_worker_downstream)sg_${var.environment}"
+  vpc_id = aws_vpc.vpc.id
+
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+   ingress {
+    from_port   = 9202
+    to_port     = 9202
+    protocol    = "tcp"
+    #cidr_blocks = ["0.0.0.0/0"]
+    security_groups = [aws_security_group.sg_worker.id]
+  }
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}

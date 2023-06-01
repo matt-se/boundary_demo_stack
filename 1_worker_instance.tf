@@ -31,3 +31,30 @@ resource "aws_instance" "boundary_worker" {
       host        = self.public_ip
     }
 }
+
+
+
+###### Security Group for Worker ######
+resource "aws_security_group" "sg_worker" {
+  name   = "${var.app_prefix}_worker_sg_${var.environment}"
+  vpc_id = aws_vpc.vpc.id
+
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+   ingress {
+    from_port   = 9202
+    to_port     = 9202
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
