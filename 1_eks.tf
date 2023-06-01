@@ -67,14 +67,13 @@ resource "aws_eks_node_group" "eks_node_group" {
   }
 
   subnet_ids = [aws_subnet.subnet_public.id]
-  node_role_arn = aws_iam_role.eks_node_role.arn
+  node_role_arn = aws_iam_role.eks_cluster_role.arn
 }
 
 
 
 
 ####### Boundary host and target config ########
-
 #boundary host for eks
 resource "boundary_host_static" "eks_server" {
   name            = "${var.app_prefix}_eks_${var.environment}"
