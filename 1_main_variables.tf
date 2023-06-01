@@ -96,7 +96,7 @@ variable "web_server_private_key" {
 }
 
 variable "web_server_user" {
-  default       = "ubuntu"
+  default       = "ec2-user"
 }
 
 
