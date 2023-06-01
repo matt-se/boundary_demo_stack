@@ -115,7 +115,12 @@ resource "aws_security_group" "sg_vault_server" {
     protocol    = "tcp"
     security_groups = [aws_security_group.sg_worker.id]
   }
-
+  ingress {
+    from_port   = 8200
+    to_port     = 8200
+    protocol    = "tcp"
+    security_groups = [aws_security_group.sg_worker.id]
+  }
   egress {
     from_port   = 0
     to_port     = 0
