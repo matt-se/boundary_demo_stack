@@ -30,4 +30,5 @@ boundary authenticate password \
    -login-name=bobby-hill
 
 boundary connect postgres -target-id=<target-id> -username matty -dbname mydb
+   
 boundary connect ssh -target-id=tssh_3ZJ3WsF5cP     
