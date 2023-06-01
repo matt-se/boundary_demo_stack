@@ -4,7 +4,7 @@ resource "aws_key_pair" "key_for_ssh_acccess_to_vault_server" {
 }
 
 resource "aws_instance" "vault" {
-  ami           = data.aws_ami.latest_amazon_linux.id
+  ami           = data.aws_ami.ubuntu.id
   instance_type = "t2.micro"
   key_name      = aws_key_pair.key_for_ssh_acccess_to_vault_server.key_name
   subnet_id     = aws_subnet.subnet_public.id
@@ -12,7 +12,7 @@ resource "aws_instance" "vault" {
   associate_public_ip_address = false
 
   tags = {
-    Name = "${var.app_prefix}_web_${var.environment}"
+    Name = "${var.app_prefix}_vault_${var.environment}"
     owner = var.owner
     version = var.app_version
   }
