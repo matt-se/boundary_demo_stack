@@ -87,11 +87,13 @@ resource "boundary_host_static" "eks_server" {
 
 #boundary target for eks
 resource "boundary_target" "eks_server" {
-  name            = "${var.app_prefix}_eks_${var.environment}"
-  description     = "eks server for ${var.app_prefix} in ${var.environment}"
-  type            = "kubernetes"
-  host_catalog_id = boundary_host_catalog_static.us_east_1_dev.id
-  target_catalog_id = boundary_target_catalog_static.us_east_1_dev.id
+  name              = "${var.app_prefix}_eks_${var.environment}"
+  description       = "eks server for ${var.app_prefix} in ${var.environment}"
+  type              = "kubernetes"
+  scope_id          = boundary_scope.project.id
+  #host_catalog_id   = boundary_host_catalog_static.us_east_1_dev.id
+  #target_catalog_id = boundary_target_catalog_static.us_east_1_dev.id
+
   depends_on = [
     aws_eks_cluster.eks_cluster
   ]
