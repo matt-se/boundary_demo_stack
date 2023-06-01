@@ -67,6 +67,7 @@ resource "aws_eks_node_group" "eks_node_group" {
   }
 
   subnet_ids = [aws_subnet.subnet_public.id]
+  node_role_arn = aws_iam_role.eks_node_role.arn
 }
 
 
