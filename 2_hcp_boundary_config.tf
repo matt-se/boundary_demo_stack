@@ -122,6 +122,7 @@ resource "boundary_host_set_static" "vault_servers" {
   ]
 }
 
+
 #boundary target for vault
 resource "boundary_target" "vault" {
   name         = "vault_servers_remote_access"
