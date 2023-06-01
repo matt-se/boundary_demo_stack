@@ -2,8 +2,8 @@
 
 Creates a fully-functional HCP Boundary demo environment.
 
-- configures HCP Boundary cluster
-- builds AWS infr (web servers, PKI worker, RDS instance)
+- configures an existing HCP Boundary cluster
+- builds AWS infr (web servers, PKI worker, RDS instance, windows server)
 - sets AWS security groups and networking rules to force traffic through Boundary.
 
 
