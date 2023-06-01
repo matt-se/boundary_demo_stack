@@ -84,7 +84,7 @@ resource "boundary_host_static" "eks_server" {
 }
 
 #boundary target for eks
-resource "boundary_target_static" "eks_server" {
+resource "boundary_target" "eks_server" {
   name            = "${var.app_prefix}_eks_${var.environment}"
   description     = "eks server for ${var.app_prefix} in ${var.environment}"
   type            = "kubernetes"
