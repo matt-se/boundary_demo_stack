@@ -104,3 +104,11 @@ resource "aws_security_group" "sg_web_server" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
+
+
+
+
+######## Output
+output "web_instance_id" {
+  value = aws_instance.web.id
+}
