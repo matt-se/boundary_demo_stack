@@ -17,3 +17,18 @@ resource "aws_instance" "vault" {
     version = var.app_version
   }
 }
+
+
+resource "boundary_target" "vault" {
+  name         = "vault_instance_${var.environment}_target"
+  type         = "ssh"
+  default_port = "22"
+  scope_id     = boundary_scope.project.id
+  host_source_ids = [
+    boundary_host_set_static.vault.id
+  ]
+  injected_application_credential_source_ids = [
+    boundary_credential_ssh_private_key.web_server_key.id
+  ]
+  ingress_worker_filter = "\"worker\" in \"/tags/type\""
+}
