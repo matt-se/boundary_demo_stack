@@ -18,6 +18,30 @@ resource "aws_instance" "vault" {
   }
 }
 
+##### Security group for vault server
+resource "aws_security_group" "sg_vault_server" {
+  name   = "${var.app_prefix}_vault_serv_sg_${var.environment}"
+  vpc_id = aws_vpc.vpc.id
+
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    security_groups = [aws_security_group.sg_worker.id]
+  }
+  ingress {
+    from_port   = 8200
+    to_port     = 8200
+    protocol    = "tcp"
+    security_groups = [aws_security_group.sg_worker.id]
+  }
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
 
 
 
@@ -49,6 +73,7 @@ resource "boundary_host_set_static" "vault_servers" {
 
 resource "boundary_target" "vault_ssh" {
   name         = "vault_instance_api_${var.environment}_target"
+  description = "for shell access to the vault ec2 instances"
   type         = "ssh"
   default_port = "22"
   scope_id     = boundary_scope.project.id
