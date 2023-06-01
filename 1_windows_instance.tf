@@ -35,3 +35,33 @@ resource "aws_instance" "windows" {
       host        = self.public_ip
     }
 }
+
+
+
+
+### boundary config for windows
+resource "boundary_host_static" "win_server" {
+  name            = "${var.app_prefix}_win_${var.environment}"
+  description     = "windows server for ${var.app_prefix} in ${var.environment}"
+  address         = aws_instance.windows.private_ip
+  host_catalog_id = boundary_host_catalog_static.us_east_1_dev.id
+}
+
+resource boundary_host_set_static "win_servers" {
+  host_catalog_id = boundary_host_catalog_static.us_east_1_dev.id
+  name = "win_servers"
+  host_ids = [
+    boundary_host_static.win_server.id
+  ]
+}
+
+resource "boundary_target" "win" {
+  name         = "win_remote_access"
+  type         = "tcp"
+  default_port = "3389"
+  scope_id     = boundary_scope.project.id
+  host_source_ids = [
+    boundary_host_set_static.win_servers.id
+  ]
+  ingress_worker_filter = "\"worker\" in \"/tags/type\""
+}

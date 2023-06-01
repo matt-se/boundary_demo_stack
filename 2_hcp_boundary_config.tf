@@ -59,141 +59,11 @@ resource "boundary_credential_library_vault" "vault-aws" {
 
 
 
-####################  hosts
+####################  host catalog
 resource "boundary_host_catalog_static" "us_east_1_dev" {
   name        = "us-east-1-dev"
   description = "Dev AWS resources in us-east-1"
   scope_id    = boundary_scope.project.id
-}
-
-
-resource "boundary_host_static" "web_server" {
-  name            = "${var.app_prefix}_web_${var.environment}"
-  description     = "frontend web server for ${var.app_prefix} in ${var.environment}"
-  address         = aws_instance.web.private_ip
-  host_catalog_id = boundary_host_catalog_static.us_east_1_dev.id
-  depends_on = [
-    aws_instance.web
-  ]
-}
-
-resource "boundary_host_static" "web_server_2" {
-  name            = "${var.app_prefix}_web_${var.environment}_2"
-  description     = "frontend web server for ${var.app_prefix} in ${var.environment}"
-  address         = aws_instance.web2.private_ip
-  host_catalog_id = boundary_host_catalog_static.us_east_1_dev.id
-  depends_on = [
-    aws_instance.web
-  ]
-}
-
-resource "boundary_host_set_static" "web_servers" {
-  host_catalog_id = boundary_host_catalog_static.us_east_1_dev.id
-  name = "web_servers"
-  host_ids = [
-    boundary_host_static.web_server.id,
-    boundary_host_static.web_server_2.id
-  ]
-  depends_on = [
-    aws_instance.web
-  ]
-}
-
-
-resource "boundary_host_static" "vault_server_1" {
-  name            = "${var.app_prefix}_vault_${var.environment}_1"
-  description     = "vault server for ${var.app_prefix} in ${var.environment}"
-  address         = aws_instance.vault.private_ip
-  host_catalog_id = boundary_host_catalog_static.us_east_1_dev.id
-  depends_on = [
-    aws_instance.vault
-  ] 
-}
-
-
-resource "boundary_host_set_static" "vault_servers" {
-  host_catalog_id = boundary_host_catalog_static.us_east_1_dev.id
-  name = "vault_servers"
-  host_ids = [
-    boundary_host_static.vault_server_1.id
-  ]
-  depends_on = [
-    aws_instance.vault
-  ]
-}
-
-
-
-resource "boundary_target" "web" {
-  name         = "web_servers_remote_access"
-  #description  = "Foo target"
-  type         = "ssh"
-  default_port = "22"
-  scope_id     = boundary_scope.project.id
-  host_source_ids = [
-    boundary_host_set_static.web_servers.id
-  ]
-  injected_application_credential_source_ids = [
-    boundary_credential_ssh_private_key.web_server_key.id
-  ]
-  ingress_worker_filter = "\"worker\" in \"/tags/type\""
-}
-
-
-### RDS host
-resource "boundary_host_static" "rds" {
-  name            = "${var.app_prefix}_rds_${var.environment}"
-  description     = "dB for ${var.app_prefix} in ${var.environment}"
-  address         = aws_db_instance.db.address
-  host_catalog_id = boundary_host_catalog_static.us_east_1_dev.id
-}
-
-resource boundary_host_set_static "rds" {
-  host_catalog_id = boundary_host_catalog_static.us_east_1_dev.id
-  name = "rds"
-  host_ids = [
-    boundary_host_static.rds.id
-  ]
-}
-
-resource "boundary_target" "db" {
-  name         = "rds_remote_access"
-  type         = "tcp"
-  default_port = "5432"
-  scope_id     = boundary_scope.project.id
-  host_source_ids = [
-    boundary_host_set_static.rds.id
-  ]
-  ingress_worker_filter = "\"worker\" in \"/tags/type\""
-}
-
-
-
-### windows
-resource "boundary_host_static" "win_server" {
-  name            = "${var.app_prefix}_win_${var.environment}"
-  description     = "windows server for ${var.app_prefix} in ${var.environment}"
-  address         = aws_instance.windows.private_ip
-  host_catalog_id = boundary_host_catalog_static.us_east_1_dev.id
-}
-
-resource boundary_host_set_static "win_servers" {
-  host_catalog_id = boundary_host_catalog_static.us_east_1_dev.id
-  name = "win_servers"
-  host_ids = [
-    boundary_host_static.win_server.id
-  ]
-}
-
-resource "boundary_target" "win" {
-  name         = "win_remote_access"
-  type         = "tcp"
-  default_port = "3389"
-  scope_id     = boundary_scope.project.id
-  host_source_ids = [
-    boundary_host_set_static.win_servers.id
-  ]
-  ingress_worker_filter = "\"worker\" in \"/tags/type\""
 }
 
 
@@ -235,6 +105,7 @@ resource "boundary_target" "ssm" {
 
 #################### users
 resource "boundary_auth_method" "password" {
+  name     = "unpw_auth_method"
   scope_id = boundary_scope.org.id
   type     = "password"
 }

@@ -19,6 +19,34 @@ resource "aws_instance" "vault" {
 }
 
 
+
+
+
+######Boundary config
+
+resource "boundary_host_static" "vault_server_1" {
+  name            = "${var.app_prefix}_vault_${var.environment}_1"
+  description     = "vault server for ${var.app_prefix} in ${var.environment}"
+  address         = aws_instance.vault.private_ip
+  host_catalog_id = boundary_host_catalog_static.us_east_1_dev.id
+  depends_on = [
+    aws_instance.vault
+  ] 
+}
+
+
+resource "boundary_host_set_static" "vault_servers" {
+  host_catalog_id = boundary_host_catalog_static.us_east_1_dev.id
+  name = "vault_servers"
+  host_ids = [
+    boundary_host_static.vault_server_1.id
+  ]
+  depends_on = [
+    aws_instance.vault
+  ]
+}
+
+
 resource "boundary_target" "vault_ssh" {
   name         = "vault_instance_api_${var.environment}_target"
   type         = "ssh"

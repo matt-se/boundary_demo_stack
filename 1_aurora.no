@@ -1,0 +1,48 @@
+resource "aws_db_subnet_group" "subnet" {
+  name       = "${var.app_prefix}_db_sn_${var.environment}"
+  subnet_ids = [aws_subnet.subnet_public.id, aws_subnet.subnet_public2.id]
+}
+
+
+resource "aws_db_instance" "db" {
+  allocated_storage    = 10
+  db_name              = "mydb"
+  identifier           = "${var.app_prefix}-db-${var.environment}"
+  engine               = "postgres"
+  instance_class       = "db.t3.micro"
+  username             = var.aws_rds_username
+  password             = var.aws_rds_password
+  skip_final_snapshot  = true
+  db_subnet_group_name = aws_db_subnet_group.subnet.name
+  vpc_security_group_ids = [aws_security_group.sg_db.id]
+}
+
+
+
+
+### Boundary Config for RDS host
+resource "boundary_host_static" "rds" {
+  name            = "${var.app_prefix}_rds_${var.environment}"
+  description     = "dB for ${var.app_prefix} in ${var.environment}"
+  address         = aws_db_instance.db.address
+  host_catalog_id = boundary_host_catalog_static.us_east_1_dev.id
+}
+
+resource boundary_host_set_static "rds" {
+  host_catalog_id = boundary_host_catalog_static.us_east_1_dev.id
+  name = "rds"
+  host_ids = [
+    boundary_host_static.rds.id
+  ]
+}
+
+resource "boundary_target" "db" {
+  name         = "rds_remote_access"
+  type         = "tcp"
+  default_port = "5432"
+  scope_id     = boundary_scope.project.id
+  host_source_ids = [
+    boundary_host_set_static.rds.id
+  ]
+  ingress_worker_filter = "\"worker\" in \"/tags/type\""
+}
