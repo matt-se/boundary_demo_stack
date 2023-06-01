@@ -38,3 +38,7 @@ ssh -p <port> ec2-user@127.0.0.1
 
 Or you could also get the target ID and connect directly in the CLI:
 boundary connect ssh -target-id=tssh_3ZJ3WsF5cP     
+   
+   
+ ----- connect to windows instance
+   Log into the AWS portal, go to EC2 > instances > connect > rdp > descrypt the password for that instance using the private key.  Connect using an RDP client with user: Administrator.
