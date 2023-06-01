@@ -19,7 +19,7 @@ resource "aws_instance" "vault" {
 }
 
 
-resource "boundary_target" "vault" {
+resource "boundary_target" "vault_ssh" {
   name         = "vault_instance_api_${var.environment}_target"
   type         = "ssh"
   default_port = "22"
@@ -33,7 +33,7 @@ resource "boundary_target" "vault" {
   ingress_worker_filter = "\"worker\" in \"/tags/type\""
 }
 
-resource "boundary_target" "vault" {
+resource "boundary_target" "vault_api" {
   name         = "vault_instance_shell_${var.environment}_target"
   type         = "tcp"
   default_port = "8200"
