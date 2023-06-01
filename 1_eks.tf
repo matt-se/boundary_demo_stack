@@ -69,9 +69,6 @@ resource "aws_eks_node_group" "eks_node_group" {
   subnet_ids = [aws_subnet.subnet_public.id]
 }
 
-output "kubeconfig" {
-  value = aws_eks_cluster.eks_cluster.kubeconfig
-}
 
 
 

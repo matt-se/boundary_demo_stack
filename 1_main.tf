@@ -29,30 +29,15 @@ provider "boundary" {
   password_auth_method_password   = var.boundary_password
 }
 
-/*
-provider "vault" {
-  address = "https://example.com"
-  token = "xyz"
-}
-*/
 
 
+#data source to pull latest aws linux ami
 data "aws_ami" "latest_amazon_linux" {
   most_recent = true
   owners      = ["amazon"]
 
   filter {
     name   = "name"
-    values = ["amzn2-ami-hvm-*"]
-  }
-
-  filter {
-    name   = "architecture"
-    values = ["x86_64"]
-  }
-
-  filter {
-    name   = "root-device-type"
-    values = ["ebs"]
+    values = ["amzn2-ami-hvm-*-x86_64-gp2"]
   }
 }
