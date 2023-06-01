@@ -36,14 +36,19 @@ resource "aws_security_group" "eks_cluster_sg" {
   name        = "eks_cluster_sg_${var.app_prefix}_${var.environment}"
   description = "EKS Cluster Security Group"
   vpc_id      = aws_vpc.vpc.id
-}
 
-resource "aws_security_group_rule" "eks_cluster_ingress" {
-  security_group_id = aws_security_group.eks_cluster_sg.id
-  from_port         = 443
-  to_port           = 443
-  protocol          = "tcp"
-  cidr_blocks      = ["0.0.0.0/0"]
+  ingress {
+    from_port     = 443
+    to_port       = 443
+    protocol      = "tcp"
+    cidr_blocks   = ["0.0.0.0/0"]
+  }
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 }
 
 resource "aws_eks_node_group" "eks_node_group" {
