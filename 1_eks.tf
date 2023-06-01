@@ -102,6 +102,7 @@ resource "aws_iam_role" "workernodes" {
 
 
 
+
 resource "aws_security_group" "eks_cluster_sg" {
   name        = "eks_cluster_sg_${var.app_prefix}_${var.environment}"
   description = "EKS Cluster Security Group"
