@@ -20,7 +20,7 @@ resource "boundary_scope" "project" {
 }
 
 
-####################  creds
+#################### creds
 resource "boundary_credential_store_static" "web_server_certs" {
   name        = "cred store for web servers ${var.environment}"
   description = "My first static credential store!"
@@ -36,6 +36,7 @@ resource "boundary_credential_ssh_private_key" "web_server_key" {
   #private_key_passphrase = "optional-passphrase"
 }
 
+/*
 resource "boundary_credential_store_vault" "vault-aws" {
   name        = "vault-aws"
   description = "My first Vault credential store!"
@@ -51,12 +52,7 @@ resource "boundary_credential_library_vault" "vault-aws" {
   path                = "aws/creds/vault-demo-iam-user"
   http_method         = "GET"
 }
-
-
-
-
-
-
+*/
 
 
 ####################  host catalog
@@ -65,8 +61,6 @@ resource "boundary_host_catalog_static" "us_east_1_dev" {
   description = "Dev AWS resources in us-east-1"
   scope_id    = boundary_scope.project.id
 }
-
-
 
 
 
