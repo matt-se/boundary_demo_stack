@@ -15,13 +15,11 @@ What you need:
 
 
 steps:
-1. Create two keypairs, one for the web servers and one for the pki worker. Do this either in AWS or locally (ssh-keygen -t rsa).  Set these at variables in the TFC workspace.
+1. Create three keypairs, one for the web servers, onw for the vault servers, and one for the pki workers. Do this either in AWS or locally (ssh-keygen -t rsa).  Set these at variables in the TFC workspace.  This is for SSH access and these will be set as Boundary credential stores.
 2. Set AWS account creds as TFC environmental variables.
 3. Create HCP Boundary cluster and get the cluster ID, URL, and admin un/pw
-4. Set HCP variables in TFC, and build it.  You should get the worker registration code as an output.
-5. Update the boundary_worker.hcl config file to include the correct values for hcp_boundary_cluster_id, public_addr, and controller_generated_activation_token.
-6. SSH into the PKI worker EC2 instance and execute the commands in the boundary_setup.sh file (or run it).
-7. Now you can log into Boundary as the user that was created in the TF and connect to a target!
+4. Set the variables in TFC, and build it.  You should get the worker registration code as an output.
+5. Now you can log into Boundary as the user that was created in the TF and connect to a target!
 
 
 
