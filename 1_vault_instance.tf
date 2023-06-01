@@ -1,6 +1,6 @@
 resource "aws_key_pair" "key_for_ssh_acccess_to_vault_server" {
   key_name   = "${var.app_prefix}_vault_server_${var.environment}_keypair"
-  public_key = var.vault_server_public_key
+  public_key = var.vault_public_key
 }
 
 resource "aws_instance" "vault" {
