@@ -3,29 +3,6 @@
 #  public_key = var.web_server_public_key
 #}
 
-
-data "aws_ami" "latest_amazon_linux" {
-  most_recent = true
-  owners      = ["amazon"]
-
-  filter {
-    name   = "name"
-    values = ["amzn2-ami-hvm-*"]
-  }
-
-  filter {
-    name   = "architecture"
-    values = ["x86_64"]
-  }
-
-  filter {
-    name   = "root-device-type"
-    values = ["ebs"]
-  }
-}
-
-
-
 resource "aws_instance" "vault" {
   ami           = data.aws_ami.latest_amazon_linux.id
   instance_type = "t2.micro"
