@@ -1,12 +1,12 @@
-#resource "aws_key_pair" "key_for_ssh_acccess_to_web_server" {
-#  key_name   = "${var.app_prefix}_web_server_${var.environment}_keypair"
-#  public_key = var.web_server_public_key
-#}
+resource "aws_key_pair" "key_for_ssh_acccess_to_vault_server" {
+  key_name   = "${var.app_prefix}_vault_server_${var.environment}_keypair"
+  public_key = var.vault_server_public_key
+}
 
 resource "aws_instance" "vault" {
   ami           = data.aws_ami.latest_amazon_linux.id
   instance_type = "t2.micro"
-  key_name      = aws_key_pair.key_for_ssh_acccess_to_web_server.key_name
+  key_name      = aws_key_pair.key_for_ssh_acccess_to_vault_server.key_name
   subnet_id     = aws_subnet.subnet_public.id
   vpc_security_group_ids      = [aws_security_group.sg_vault_server.id]
   associate_public_ip_address = false
@@ -45,9 +45,7 @@ resource "aws_security_group" "sg_vault_server" {
 
 
 
-
 ######Boundary config
-
 resource "boundary_host_static" "vault_server_1" {
   name            = "${var.app_prefix}_vault_${var.environment}_1"
   description     = "vault server for ${var.app_prefix} in ${var.environment}"
@@ -81,7 +79,7 @@ resource "boundary_target" "vault_ssh" {
     boundary_host_set_static.vault_servers.id
   ]
   injected_application_credential_source_ids = [
-    boundary_credential_ssh_private_key.web_server_key.id
+    boundary_credential_ssh_private_key.vault_server_key.id
   ]
   ingress_worker_filter = "\"worker\" in \"/tags/type\""
 }
@@ -95,4 +93,19 @@ resource "boundary_target" "vault_api" {
     boundary_host_set_static.vault_servers.id
   ]
   ingress_worker_filter = "\"worker\" in \"/tags/type\""
+}
+
+
+#################### creds
+resource "boundary_credential_store_static" "vault_server_certs" {
+  name        = "cred store for vault servers ${var.environment}"
+  scope_id    = boundary_scope.project.id
+}
+
+resource "boundary_credential_ssh_private_key" "vault_server_key" {
+  name                   = "ssh_private_key_for_vault_servers_${var.environment}"
+  credential_store_id    = boundary_credential_store_static.vault_server_certs.id
+  username               = var.web_server_user
+  private_key            = var.vault_private_key
+  #private_key_passphrase = "optional-passphrase"
 }

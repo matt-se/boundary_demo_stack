@@ -99,7 +99,12 @@ variable "web_server_user" {
   default       = "ec2-user"
 }
 
+variable vault_public_key {
+}
 
+variable "vault_private_key" {
+}
+  
 
 ##########   AWS worker instance
 variable "worker_ami" {
