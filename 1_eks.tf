@@ -38,7 +38,6 @@ resource "aws_eks_cluster" "eks_cluster" {
  depends_on = [
   aws_iam_role.eks-iam-role,
  ]
- security_group_ids = [aws_security_group.eks_cluster_sg.id]
 }
 
 
