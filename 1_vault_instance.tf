@@ -25,7 +25,7 @@ resource "boundary_target" "vault" {
   default_port = "22"
   scope_id     = boundary_scope.project.id
   host_source_ids = [
-    boundary_host_set_static.vault.id
+    boundary_host_set_static.vault_servers.id
   ]
   injected_application_credential_source_ids = [
     boundary_credential_ssh_private_key.web_server_key.id
