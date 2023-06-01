@@ -85,6 +85,18 @@ resource "boundary_target" "vault" {
   ingress_worker_filter = "\"worker\" in \"/tags/type\""
 }
 
+resource "boundary_target" "vault_API" {
+  name         = "vault_servers_API"
+  description  = "for use in accessing the Vault API via port 8200, either through CLI or browser"
+  type         = "tcp"
+  default_port = "8200"
+  scope_id     = boundary_scope.project.id
+  host_source_ids = [
+    boundary_host_set_static.vault_servers.id
+  ]
+  ingress_worker_filter = "\"worker\" in \"/tags/type\""
+}
+
 
 #################### creds
 resource "boundary_credential_store_static" "vault_server_certs" {
