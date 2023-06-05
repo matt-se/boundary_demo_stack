@@ -71,7 +71,7 @@ resource "boundary_host_set_static" "vault_servers" {
 
 
 resource "boundary_target" "vault" {
-  name         = "vault_servers_remote_access"
+  name         = "${var.app_prefix}_${var.environment}_vault_servers_remote_access"
   #description  = "Foo target"
   type         = "ssh"
   default_port = "22"

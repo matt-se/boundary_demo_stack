@@ -69,7 +69,7 @@ resource "boundary_host_set_static" "web_servers" {
 }
 
 resource "boundary_target" "web" {
-  name         = "web_servers_remote_access"
+  name         = "${var.app_prefix}_${var.environment}_web_servers_remote_access"
   #description  = "Foo target"
   type         = "ssh"
   default_port = "22"

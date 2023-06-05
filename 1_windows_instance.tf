@@ -67,7 +67,7 @@ resource boundary_host_set_static "win_servers" {
 }
 
 resource "boundary_target" "win" {
-  name         = "win_remote_access"
+  name         = "${var.app_prefix}_${var.environment}_win_remote_access"
   type         = "tcp"
   default_port = "3389"
   scope_id     = boundary_scope.project.id
