@@ -1,7 +1,7 @@
-resource "aws_key_pair" "key_for_ssh_acccess_to_worker" {
-  key_name   = "${var.app_prefix}_boundary_pki_worker_${var.environment}_keypair"
-  public_key = var.ec2_public_key
-}
+#resource "aws_key_pair" "key_for_ssh_acccess_to_worker" {
+#  key_name   = "${var.app_prefix}_boundary_pki_worker_${var.environment}_keypair"
+#  public_key = var.ec2_public_key
+#}
 
 resource "aws_instance" "boundary_worker" {
   ami           = var.worker_ami
@@ -23,13 +23,13 @@ resource "aws_instance" "boundary_worker" {
     #public_ip = self.public_ip
   })
 
-  
+  /*
   connection {
       type        = "ssh"
       user        = var.worker_key_user
       private_key = var.ec2_private_key
       host        = self.public_ip
-    }
+    } */
 }
 
 
