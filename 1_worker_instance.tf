@@ -20,7 +20,6 @@ resource "aws_instance" "boundary_worker" {
   user_data = templatefile("script.sh", {
     boundary_cluster_id = var.boundary_cluster_id,
     controller_generated_activation_token = boundary_worker.worker.controller_generated_activation_token
-    #public_ip = self.public_ip
   })
 
   /*
@@ -57,4 +56,19 @@ resource "aws_security_group" "sg_worker" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+}
+
+
+#################### HCP Boundary configuration ####################
+resource "boundary_worker" "worker" {
+  name        = "${var.app_prefix}_worker_${var.environment}"
+  description = "${var.app_prefix}_worker_${var.environment}"
+  scope_id    = "global"
+}
+
+
+
+############## Outputs ##############
+output "boundary_worker_reg_code" {
+  value = boundary_worker.worker.controller_generated_activation_token
 }

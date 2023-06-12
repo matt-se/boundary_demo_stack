@@ -133,29 +133,3 @@ resource "boundary_role" "devs_read_only" {
   scope_id    = boundary_scope.project.id
   grant_strings = ["id=*;type=target;actions=list,read,authorize-session","id=*;type=session;actions=read:self,cancel:self","id=*;type=session;actions=no-op,list"]
 }
-
-
-
-#################### workers
-resource "boundary_worker" "worker" {
-  name        = "${var.app_prefix}_worker_${var.environment}"
-  description = "${var.app_prefix}_worker_${var.environment}"
-  scope_id    = "global"
-}
-
-resource "boundary_worker" "downstream_worker" {
-  name        = "${var.app_prefix}_downstream_worker_${var.environment}"
-  description = "${var.app_prefix}_downstream_worker_${var.environment}"
-  scope_id    = "global"
-}
-
-
-
-############## Outputs ##############
-output "boundary_worker_reg_code" {
-  value = boundary_worker.worker.controller_generated_activation_token
-}
-
-output "boundary_worker_downstream_reg_code" {
-  value = boundary_worker.downstream_worker.controller_generated_activation_token
-}

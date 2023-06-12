@@ -46,3 +46,19 @@ resource "aws_security_group" "sg_downstream_worker" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
+
+
+
+#################### HCP Boundary configuration ####################
+resource "boundary_worker" "downstream_worker" {
+  name        = "${var.app_prefix}_downstream_worker_${var.environment}"
+  description = "${var.app_prefix}_downstream_worker_${var.environment}"
+  scope_id    = "global"
+}
+
+
+
+############## Outputs ##############
+output "boundary_worker_downstream_reg_code" {
+  value = boundary_worker.downstream_worker.controller_generated_activation_token
+}
