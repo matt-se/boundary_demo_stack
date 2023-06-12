@@ -108,7 +108,7 @@ resource "boundary_credential_ssh_private_key" "vault_server_key" {
   name                   = "ssh_private_key_for_vault_servers_${var.environment}"
   credential_store_id    = boundary_credential_store_static.vault_server_certs.id
   username               = "ec2-user"
-  private_key            = var.vault_private_key
+  private_key            = var.ec2_private_key
   #private_key_passphrase = "optional-passphrase"
 }
 

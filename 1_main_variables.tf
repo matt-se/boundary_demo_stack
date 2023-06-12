@@ -98,10 +98,6 @@ variable "web_server_public_key" {
 variable "web_server_private_key" {
 }
 
-variable "web_server_user" {
-  default       = "ec2-user"
-}
-
 variable vault_public_key {
 }
 
@@ -118,6 +114,9 @@ variable "windows_public_key" {
 }
 */
 
+variable "web_server_user" {
+  default       = "ec2-user"
+}
 
 ##########   AWS worker instance
 variable "worker_ami" {
