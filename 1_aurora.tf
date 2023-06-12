@@ -37,7 +37,7 @@ resource boundary_host_set_static "rds" {
 }
 
 resource "boundary_target" "db" {
-  name         = "rds_remote_access"
+  name         = "${var.app_prefix}_rds_${var.environment}_rds_remote_access"
   type         = "tcp"
   default_port = "5432"
   scope_id     = boundary_scope.project.id
