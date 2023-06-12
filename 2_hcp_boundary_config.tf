@@ -133,3 +133,14 @@ resource "boundary_worker" "downstream_worker" {
   description = "${var.app_prefix}_downstream_worker_${var.environment}"
   scope_id    = "global"
 }
+
+
+
+############## Outputs ##############
+output "boundary_worker_reg_code" {
+  value = boundary_worker.worker.controller_generated_activation_token
+}
+
+output "boundary_worker_downstream_reg_code" {
+  value = boundary_worker.downstream_worker.controller_generated_activation_token
+}
