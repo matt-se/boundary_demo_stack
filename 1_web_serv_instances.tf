@@ -1,6 +1,6 @@
 resource "aws_key_pair" "key_for_ssh_acccess_to_web_server" {
   key_name   = "${var.app_prefix}_web_server_${var.environment}_keypair"
-  public_key = var.web_server_public_key
+  public_key = var.ec2_public_key
 }
 
 resource "aws_instance" "web" {
@@ -95,7 +95,7 @@ resource "boundary_credential_ssh_private_key" "web_server_key" {
   description            = "My first ssh private key credential!"
   credential_store_id    = boundary_credential_store_static.web_server_certs.id
   username               = var.web_server_user
-  private_key            = var.web_server_private_key
+  private_key            = var.ec2_private_key
   #private_key_passphrase = "optional-passphrase"
 }
 

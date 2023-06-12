@@ -15,7 +15,7 @@ What you need:
 
 
 steps:
-1. Create three keypairs, one for the web servers, onw for the vault servers, and one for the pki workers. Do this either in AWS or locally (ssh-keygen -t rsa).  Set these at variables in the TFC workspace.  This is for SSH access and these will be set as Boundary credential stores.
+1. Create a keypair to be used for remote access. Do this either in AWS or locally (ssh-keygen -t rsa).  This is for SSH access and these will be set in the Boundary credential stores.  You can create separate keypairs for each resource, but for simplicity's sake we just create one and use it everywhere.
 2. Set AWS account creds as TFC environmental variables.
 3. Create HCP Boundary cluster and get the cluster ID, URL, and admin un/pw
 4. Set the variables in TFC, and build it.  The workers should register automatically via the user_data script that is passed.

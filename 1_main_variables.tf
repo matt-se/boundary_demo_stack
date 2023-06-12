@@ -87,12 +87,15 @@ variable "web_ami" {
   default     = "ami-00874d747dde814fa"
 }
 
+
+variable "ec2_public_key" {}
+variable "ec2_private_key" {}
+
+/*
 variable "web_server_public_key" {
-#  default       = "keys/dales-dead-bug_frontend_web_server_dev_keypair.pem.pub"
 }
 
 variable "web_server_private_key" {
-  #default       = "keys/dales-dead-bug_frontend_web_server_dev_keypair.pem"
 }
 
 variable "web_server_user" {
@@ -104,20 +107,22 @@ variable vault_public_key {
 
 variable "vault_private_key" {
 }
-  
+
+variable "worker_public_key" {
+}
+
+variable "worker_private_key" {
+}
+
+variable "windows_public_key" {
+}
+*/
+
 
 ##########   AWS worker instance
 variable "worker_ami" {
   description = "ami to use for the worker instance"
   default     = "ami-00874d747dde814fa"
-}
-
-variable "worker_public_key" {
- # default       = "keys/dales-dead-bug_frontend_boundary_pki_worker_dev_keypair.pem.pub"
-}
-
-variable "worker_private_key" {
-  #default       = "keys/dales-dead-bug_frontend_boundary_pki_worker_dev_keypair.pem"
 }
 
 variable "worker_key_user" {
@@ -140,10 +145,6 @@ variable "aws_rds_password" {
 variable "windows_ami" {
   description = "ami to use for the windows instance"
   default     = "ami-03cf1a25c0360a382"
-}
-
-variable "windows_public_key" {
-  #default       = "keys/dales-dead-bug_frontend_windows_dev_keypair.pem.pub"
 }
 
 ########## Vault Provider
