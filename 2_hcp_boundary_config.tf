@@ -5,7 +5,7 @@ resource "boundary_scope" "global" {
 }
 
 resource "boundary_scope" "org" {
-  name                     = "external_it_services"
+  name                     = "External IT Services"
   description              = "Products meant for external consumption"
   scope_id                 = "global"
   auto_create_admin_role   = true
@@ -19,6 +19,21 @@ resource "boundary_scope" "project" {
   auto_create_admin_role = true
 }
 
+resource "boundary_scope" "org_internal" {
+  name                     = "Internal IT Services"
+  description              = "Products meant for INTERNAL consumption"
+  scope_id                 = "global"
+  auto_create_admin_role   = true
+  auto_create_default_role = true
+}
+
+resource "boundary_scope" "org_backend" {
+  name                     = "Backend Infrastructure"
+  description              = "Backend Underlying Infrastructure"
+  scope_id                 = "global"
+  auto_create_admin_role   = true
+  auto_create_default_role = true
+}
 
 
 /*
