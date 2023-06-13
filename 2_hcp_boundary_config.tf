@@ -99,6 +99,7 @@ resource "boundary_target" "ssm" {
 resource "boundary_auth_method" "password" {
   name     = "unpw_auth_method"
   scope_id = boundary_scope.org.id
+  type = "password"
 }
 
 resource "boundary_account_password" "bobby-hill" {
