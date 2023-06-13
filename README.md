@@ -28,7 +28,8 @@ steps:
  
 ----- connect to PSQL
 boundary connect postgres -target-id=<target-id> -username matty -dbname mydb
-   
+or
+psql -h 127.0.0.1 -p <Port> -d mydb -U matty -W
    
 ----- connect to EC2 instance via credential injection
 In order to connect to an EC2 instance (vault or web target), start a connection in the desktop client and then do this in the terminal:
