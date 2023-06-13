@@ -99,12 +99,10 @@ resource "boundary_target" "ssm" {
 resource "boundary_auth_method" "password" {
   name     = "unpw_auth_method"
   scope_id = boundary_scope.org.id
-  type     = "password"
 }
 
 resource "boundary_account_password" "bobby-hill" {
   auth_method_id = boundary_auth_method.password.id
-  type           = "password"
   login_name     = var.boundary_lower_user_name
   password       = var.boundary_lower_user_password
 }

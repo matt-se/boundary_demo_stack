@@ -24,8 +24,8 @@ provider "aws" {
 provider "boundary" {
   addr                            = var.boundary_url
   auth_method_id                  = var.boundary_auth_id
-  password_auth_method_login_name = var.boundary_username
-  password_auth_method_password   = var.boundary_password
+  auth_method_login_name = var.boundary_username
+  auth_method_password   = var.boundary_password
 }
 
 
