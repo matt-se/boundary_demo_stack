@@ -33,30 +33,23 @@ variable "tfc_org" {
 
 #########  HCP Boundary
 variable "boundary_url" {
-  default     = "https://98814fc9-b650-4469-96c0-5397232f19b1.boundary.hashicorp.cloud"
+  default     = "https://7d10cc4a-64b4-4cb1-a29a-2fbe566e5df7.boundary.hashicorp.cloud"
 }
-
 variable "boundary_cluster_id" {
-  default     = "98814fc9-b650-4469-96c0-5397232f19b1"
+  default     = "7d10cc4a-64b4-4cb1-a29a-2fbe566e5df7"
 }
-
 variable "boundary_auth_id" {
-  default     = "ampw_s06oRsCdpU"
+  default     = "ampw_vxuhHlAIUA"
+  description = "get this from boundary.  It is the root auth method"
 }
-
-
 variable "boundary_username" {
   default     = "matty-boundary-admin"
+  description = "admin user for boundary"
 }
-
-variable "boundary_password" {
-  default     = "changeme"
-}
-
+variable "boundary_password" {}
 variable "boundary_lower_user_name" {
   default     = "bobby-hill"
 }
-
 variable "boundary_lower_user_password" { 
   default     = "changeme"
 }
@@ -86,32 +79,16 @@ variable "web_ami" {
   description = "ami to use for the web instance"
   default     = "ami-00874d747dde814fa"
 }
-
-
 variable "ec2_public_key" {}
 variable "ec2_private_key" {}
-
 /*
-variable "web_server_public_key" {
-}
-
-variable "web_server_private_key" {
-}
-
-variable vault_public_key {
-}
-
-variable "vault_private_key" {
-}
-
-variable "worker_public_key" {
-}
-
-variable "worker_private_key" {
-}
-
-variable "windows_public_key" {
-}
+variable "web_server_public_key" {}
+variable "web_server_private_key" {}
+variable vault_public_key {}
+variable "vault_private_key" {}
+variable "worker_public_key" {}
+variable "worker_private_key" {}
+variable "windows_public_key" {}
 */
 
 variable "web_server_user" {
