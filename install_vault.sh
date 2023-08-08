@@ -2,20 +2,6 @@
 set -e
 exec > >(tee /var/log/user-data.log) 2>&1
 
-
-# Create a configuration directory
-#sudo mkdir -p /etc/vault
-# Write the Vault configuration file
-#echo 'listener "tcp" {
-#      address     = "0.0.0.0:8200"
-#      tls_disable = 1 # Be aware, disabling TLS is not recommended for production
-#    }
-#    storage "file" {
-#      path = "/var/lib/vault/data"
-#    }' | sudo tee /etc/vault/vault.hcl
-
-
-
 # Download and install Vault
 mkdir /home/ubuntu/vault/ && cd /home/ubuntu/vault/
 sudo apt update
@@ -38,3 +24,7 @@ sleep 5s
 vault status
 
 echo "Vault is now running in dev mode."
+
+export VAULT_TOKEN="matt"
+vault auth enable userpass
+vault write auth/userpass/users/bobby password=password
