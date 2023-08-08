@@ -28,7 +28,10 @@ resource "aws_instance" "vault" {
       private_key = var.ec2_private_key
       host        = self.public_ip
     }
-
+  provisioner "file" {
+    source      = "${path.root}/install_vault.sh"
+    destination = "/ops"
+  }
 }
 
 
