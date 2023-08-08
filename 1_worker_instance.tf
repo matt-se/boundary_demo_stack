@@ -17,7 +17,7 @@ resource "aws_instance" "boundary_worker" {
     version = var.app_version
   }
   user_data_replace_on_change = true
-  user_data = templatefile("script.sh", {
+  user_data = templatefile("install_boundary.sh", {
     boundary_cluster_id = var.boundary_cluster_id,
     controller_generated_activation_token = boundary_worker.worker.controller_generated_activation_token
   })
