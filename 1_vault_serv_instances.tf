@@ -19,7 +19,7 @@ resource "aws_instance" "vault" {
 
   user_data_replace_on_change = true
   user_data = templatefile("install_vault.sh",{
-    vault_version = "1.14.1"
+    VAULT_VERSION = "1.14.1"
   })
 
   connection {
