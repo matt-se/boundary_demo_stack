@@ -19,7 +19,7 @@ export VAULT_ADDR='http://127.0.0.1:8200'
 sudo openssl req -new -newkey rsa:4096 -x509 -sha256 -days 365 -nodes -out /home/ubuntu/vault/vault.crt -keyout /home/ubuntu/vault/vault.key -subj "/C=US/ST=CA/L=San Francisco/O=HashiCorp/OU=Vault/CN="
 
 # Start Vault in dev mode with the root token set as 'matt'
-nohup vault server -dev -dev-root-token-id="matt" -dev-listen-address="0.0.0.0:8200" -dev-tls-cert="/home/ubuntu/vault/vault.crt" -dev-tls-key="/home/ubuntu/vault/vault.key" &
+nohup vault server -dev -dev-root-token-id="matt" -dev-listen-address="0.0.0.0:8200" -dev-tls &
 
 
 # It will take some time to start up, sleep for few seconds
