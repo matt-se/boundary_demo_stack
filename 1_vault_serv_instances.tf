@@ -76,7 +76,7 @@ resource "boundary_target" "vault" {
 }
 
 resource "boundary_target" "vault_API" {
-  name         = "vault_servers_API"
+  name         = "${var.app_prefix}_${var.environment}_vault_servers_API"
   description  = "for use in accessing the Vault API via port 8200, either through CLI or browser"
   type         = "tcp"
   default_port = "8200"
