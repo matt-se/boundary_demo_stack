@@ -32,25 +32,7 @@ resource "aws_instance" "vault" {
 }
 
 
-/*
-resource "aws_instance" "web2" {
-  ami           = data.aws_ami.latest_amazon_linux.id
-  instance_type = "t2.micro"
-  key_name      = aws_key_pair.key_for_ssh_acccess_to_web_server.key_name
-  subnet_id     = aws_subnet.subnet_public.id
-  vpc_security_group_ids      = [aws_security_group.sg_web_server.id]
-  associate_public_ip_address = false
-
-  tags = {
-    Name = "${var.app_prefix}_web_${var.environment}_2"
-    owner = var.owner
-    version = var.app_version
-  }
-}
-*/
-
-/*
-##### boundary config for web servers
+##### boundary config for vault servers
 resource "boundary_host_static" "vault_server" {
   name            = "${var.app_prefix}_vault_${var.environment}"
   description     = "vault server for ${var.app_prefix} in ${var.environment}"
@@ -60,21 +42,9 @@ resource "boundary_host_static" "vault_server" {
     aws_instance.vault
   ]
 }
-*/
 
-/*
-resource "boundary_host_static" "web_server_2" {
-  name            = "${var.app_prefix}_web_${var.environment}_2"
-  description     = "frontend web server for ${var.app_prefix} in ${var.environment}"
-  address         = aws_instance.web2.private_ip
-  host_catalog_id = boundary_host_catalog_static.us_east_1_dev.id
-  depends_on = [
-    aws_instance.web
-  ]
-}
-*/
 
-/*
+
 resource "boundary_host_set_static" "vault_servers" {
   host_catalog_id = boundary_host_catalog_static.us_east_1_dev.id
   name = "vault_servers"
@@ -114,7 +84,7 @@ resource "boundary_target" "vault_API" {
   ingress_worker_filter = "\"worker\" in \"/tags/type\""
 }
 
-
+/*
 #################### creds
 resource "boundary_credential_store_static" "vault_server_certs" {
   name        = "cred store for vault servers ${var.environment}"
