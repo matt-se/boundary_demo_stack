@@ -9,7 +9,7 @@ resource "aws_instance" "vault" {
   key_name      = aws_key_pair.key_for_ssh_acccess_to_vault_server.key_name
   subnet_id     = aws_subnet.subnet_public.id
   vpc_security_group_ids      = [aws_security_group.sg_vault_server.id]
-  associate_public_ip_address = false
+  associate_public_ip_address = true
 
   tags = {
     Name = "${var.app_prefix}_vault_${var.environment}"
