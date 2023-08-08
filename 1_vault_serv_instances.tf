@@ -30,7 +30,7 @@ resource "aws_instance" "vault" {
     }
   provisioner "file" {
     source      = "${path.root}/install_vault.sh"
-    destination = "/ops"
+    destination = "/home/ubuntu/install_vault.sh"
   }
 }
 
