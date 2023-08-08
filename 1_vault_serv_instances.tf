@@ -16,7 +16,20 @@ resource "aws_instance" "vault" {
     owner = var.owner
     version = var.app_version
   }
+
+  user_data_replace_on_change = true
+  user_data = templatefile("insall_vault.sh")
+
+  connection {
+      type        = "ssh"
+      user        = var.worker_key_user
+      private_key = var.ec2_private_key
+      host        = self.public_ip
+    }
+
 }
+
+
 /*
 resource "aws_instance" "web2" {
   ami           = data.aws_ami.latest_amazon_linux.id
@@ -34,7 +47,7 @@ resource "aws_instance" "web2" {
 }
 */
 
-
+/*
 ##### boundary config for web servers
 resource "boundary_host_static" "vault_server" {
   name            = "${var.app_prefix}_vault_${var.environment}"
@@ -45,6 +58,7 @@ resource "boundary_host_static" "vault_server" {
     aws_instance.vault
   ]
 }
+*/
 
 /*
 resource "boundary_host_static" "web_server_2" {
@@ -58,6 +72,7 @@ resource "boundary_host_static" "web_server_2" {
 }
 */
 
+/*
 resource "boundary_host_set_static" "vault_servers" {
   host_catalog_id = boundary_host_catalog_static.us_east_1_dev.id
   name = "vault_servers"
@@ -111,9 +126,7 @@ resource "boundary_credential_ssh_private_key" "vault_server_key" {
   private_key            = var.ec2_private_key
   #private_key_passphrase = "optional-passphrase"
 }
-
-
-
+*/
 
 
 ##### SECURITY GROUP
